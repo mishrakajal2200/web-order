@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <!-- Mirrored from askbootstrap.com/preview/swiggi/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:23 GMT -->
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Askbootstrap" />
+    <meta name="author" content="Askbootstrap" />
+    <link rel="icon" type="image/png" href="img/fav.png" />
+    <title>Swiggi - Online Food Ordering Website Mobile Template</title>
+
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/slick/slick-theme.min.css"
+    />
+    
+
+    <link href="vendor/icons/feather.css" rel="stylesheet" type="text/css" />
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="./img/css/style.css" rel="stylesheet" />
+
+    <link href="vendor/sidebar/demo.css" rel="stylesheet" />
+
+    <style>
+      body{
+        background-image: url(./img/shiva.jpg!d);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+        
+      }
+      .order-number {
+  font-size: 14px; /* Adjust the size as needed */
+}
+       /* Example styles for progress bar and buttons */
+       .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #4caf50;
+        }
+        #cancelOrder {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .progress-step {
+            margin-top: 20px;
+        }
+        #prev, #next {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .loading {
+            opacity: 0.5;
+        }
+        .loaded {
+            opacity: 1;
+        }
+        .order-details {
+  font-size: 0.875rem; /* Adjust as needed */
+}
+.order-details h2 {
+  font-size: 1rem; /* Adjust if you want a slightly larger size for headers */
+}
+.order-details p, .order-details strong {
+  font-size: 0.875rem; /* Consistent font size within paragraph and bolded text */
+}
+    </style>
+
+  </head>
+  <body class="bg-light fixed-bottom-bar loading">
+    <div class="osahan-checkout">
+      <div
+        class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center"
+      >
+      </div>
+
+      <div class="p-3 osahan-cart-item">
+        <div
+          class="d-flex mb-3 osahan-cart-item-profile bg-white shadow rounded p-3 mt-n5"
+        >
+
+          <div>
+            <p class="mb-0 small text-muted">
+            </p>
+            <div class="d-flex align-items-center text-center">
+              <img src="./img/extraaz2logo.webp" alt="" style="width: 190px;">
+              <h4>Thank You For Your Order</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="container">
+          <div id="orderDetails" class="mt-4"></div>
+          <div id="app"></div>
+          <p id="Order_status" class="text-center text-success"></p>
+        </div> -->
+
+      <!-- Optional timer display -->
+   
+    <div class="container mt-5">
+      <main>
+        <!-- Use responsive classes for better layout on smaller screens -->
+        <div class="container col-12 col-md-8 col-lg-6 shadow-lg border rounded-3 p-4" style="background-color: white;">
+          <section class="thankyou">
+            <!-- Display the order details -->
+            <div id="orderDetails"></div>
+            <div id="timerContainer" style="margin-top: 20px;">
+              <span id="timer"></span>
+            </div>
+          </section>
+    
+          <!-- Section for thank you message -->
+          <section class="thankyou mt-4 text-center mb-4">
+            <h4 class="mb-3">Order Placed Successfully!</h4>
+            <p>Your order is on its way and will be arriving soon.</p>
+    
+            <!-- Continue Shopping section with flexbox for alignment -->
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+              <a href="home.html" class="mb-md-0">
+                <button type="button" class="btn btn-primary px-4  mb-md-0">
+                  Continue Shopping
+                </button>
+              </a>
+    
+              <span class="text text-dark fw-bold mx-3">OR</span>
+    
+              <a href="https://maps.app.goo.gl/5xjsqxWDFu55arLs6?g_st=iw" type="button" class="btn btn-success px-4">
+                Please Give Us Feedback Here!
+              </a>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    
+
+   <!-- Cancel order button, initially hidden -->
+   <!-- <button id="cancelOrderBtn" class="btn btn-danger" style="display: none;" onclick="cancelOrder()">Cancel Order</button> -->
+
+  
+
+ 
+
+    <nav id="main-nav">
+      <ul class="second-nav">
+        <li>
+          <a href="index.html"><i class="feather-grid mr-2"></i> Intro</a>
+        </li>
+        <li>
+          <a href="landing.html"><i class="feather-layers mr-2"></i> Landing</a>
+        </li>
+        <li>
+          <a href="home.html"><i class="feather-home mr-2"></i> Homepage</a>
+        </li>
+        <li>
+          <a href="#"><i class="feather-edit-2 mr-2"></i> Authentication</a>
+          <ul>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Register</a></li>
+            <li><a href="forgot_password.html">Forgot Password</a></li>
+            <li><a href="verification.html">Verification</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="select_country.html">Select Country</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="trending.html"
+            ><i class="feather-trending-up mr-2"></i> Trending</a
+          >
+        </li>
+        <li>
+          <a href="most_popular.html"
+            ><i class="feather-award mr-2"></i> Most Popular</a
+          >
+        </li>
+        <li>
+          <a href="restaurant.html"
+            ><i class="feather-paperclip mr-2"></i> Restaurant Detail</a
+          >
+        </li>
+        <li>
+          <a href="recipe.html"
+            ><i class="feather-file-text mr-2"></i> Recipe</a
+          >
+        </li>
+        <li>
+          <a href="checkout.html"><i class="feather-list mr-2"></i> Checkout</a>
+        </li>
+        <li>
+          <a href="map.html"><i class="feather-map-pin mr-2"></i> Live Map</a>
+        </li>
+        <li>
+          <a href="payment.html"
+            ><i class="feather-credit-card mr-2"></i> Payment</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="feather-user mr-2"></i> Profile</a>
+          <ul>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="feather-book mr-2"></i> Pages</a>
+          <ul>
+            <li><a href="filters.html">Filters</a></li>
+            <li><a href="terms.html">Terms & conditions</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="privacy.html">Privacy & Policy</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="feather-alert-triangle mr-2"></i> Error</a>
+          <ul>
+            <li><a href="not-found.html">Not Found</a></li>
+            <li><a href="maintence.html"> Maintence</a></li>
+            <li><a href="coming-soon.html">Coming Soon</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"
+            ><i class="feather-link mr-2"></i> Navigation Link Example</a
+          >
+          <ul>
+            <li>
+              <a href="#">Link Example 1</a>
+              <ul>
+                <li>
+                  <a href="#">Link Example 1.1</a>
+                  <ul>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Link Example 1.2</a>
+                  <ul>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Link Example 2</a></li>
+            <li><a href="#">Link Example 3</a></li>
+            <li><a href="#">Link Example 4</a></li>
+            <li data-nav-custom-content>
+              <div class="custom-message">
+                You can add any custom content to your navigation items. This
+                text is just an example.
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="bottom-nav">
+        <li class="email">
+          <a class="text-danger" href="home.html">
+            <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+            Home
+          </a>
+        </li>
+        <li class="github">
+          <a href="faq.html">
+            <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+            FAQ
+          </a>
+        </li>
+        <li class="ko-fi">
+          <a href="contact-us.html">
+            <p class="h5 m-0"><i class="feather-phone"></i></p>
+            Help
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <script
+      src="vendor/jquery/jquery.min.js"
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+    ></script>
+    <script
+      src="vendor/bootstrap/js/bootstrap.bundle.min.js"
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+    ></script>
+    <script
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+      src="vendor/slick/slick.min.js"
+    ></script>
+   
+    <script
+      src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="91829b7bdd9927fe0b329f0a-|49"
+      defer
+    ></script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"8bc3357c0ae785dc","version":"2024.8.0","r":1,"serverTiming":{"name":{"cfL4":true}},"token":"dd471ab1978346bbb991feaa79e6ce5c","b":1}'
+      crossorigin="anonymous"
+    ></script>
+
+   
+<script src="../../../js/fetchOrderDetails.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+            fetch("/env.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    const url = data.URL;
+                    const restaurant_id = localStorage.getItem("urlSegment");
+                    const locationId = sessionStorage.getItem("selectedLocationId");
+
+                    console.log("API URL:", url);
+                    console.log("Location ID:", locationId);
+                    console.log("Restaurant ID:", restaurant_id); // Should log "EPOS737290"
+
+                    // Cancel Order Button Logic
+                    const cancelOrderButton = document.getElementById('cancelOrder');
+                    if (cancelOrderButton) {
+                        setTimeout(function () {
+                            cancelOrderButton.style.display = 'none';
+                        }, 5000 * 12); // Cancel Button will not be visible after 60 seconds!
+                    }
+
+                    // Element References for Progress
+                    var prev = document.getElementById("prev");
+                    var next = document.getElementById("next");
+                    var trak = document.getElementById("progress");
+                    var step = document.getElementById("step");
+
+                    // Check for the next button
+                    if (next) {
+                        next.addEventListener("click", function () {
+                            var cls = trak.className.split("-").pop();
+                            cls > 6 ? (cls = 0) : cls++;
+                            step.innerHTML = cls;
+                            trak.className = "progress-" + cls;
+                        });
+                    } else {
+                        console.error("Next button not found.");
+                    }
+
+                    // Check for the previous button
+                    if (prev) {
+                        prev.addEventListener("click", function () {
+                            var cls = trak.className.split("-").pop();
+                            cls < 1 ? (cls = 7) : cls--;
+                            step.innerHTML = cls;
+                            trak.className = "progress-" + cls;
+                        });
+                    } else {
+                        console.error("Previous button not found.");
+                    }
+
+                    setTimeout(function () {
+                        $("body").removeClass("loading").addClass("loaded");
+                    }, 2000);
+                })
+                .catch((error) => console.error("Error fetching env.json:", error));
+        });
+</script>
+
+  </body>
+</html>

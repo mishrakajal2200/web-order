@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #searchResults {
+            margin-top: 20px;
+        }
+
+        .search-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .search-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .search-item p {
+            margin: 5px 0;
+        }
+
+    </style>
+
+</head>
+<body>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="searchResults"></div>
+
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            const searchQuery = document.getElementById("searchInput").value.trim(); // Trim spaces
+
+            if (searchQuery) {
+                searchAPI(searchQuery);
+            }
+        });
+
+        
+        async function searchAPI(query) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/search?query=${encodeURIComponent(query)}`);
+    const data = await response.json();
+
+    if (response.ok) {
+      displayResults(data); // Call your function to display the results
+    } else {
+      console.error("No items found:", data.message);
+      // Handle no results found on UI
+      document.getElementById('results').innerHTML = `<p>No items found</p>`;
+    }
+  } catch (error) {
+    console.error("Error fetching search results:", error);
+    document.getElementById('results').innerHTML = `<p>Error occurred while fetching results</p>`;
+  }
+}
+
+function displayResults(items) {
+  const resultsContainer = document.getElementById('results');
+  resultsContainer.innerHTML = ''; // Clear previous results
+
+  items.forEach(item => {
+    const itemElement = document.createElement('div');
+    itemElement.textContent = `${item.name}`;
+    resultsContainer.appendChild(itemElement);
+  });
+}
+
+
+        function displayResults(data) {
+  console.log(data); // Check what data is being passed
+  const resultsContainer = document.getElementById("searchResults");
+  resultsContainer.innerHTML = "";
+
+  if (!Array.isArray(data)) {
+    // If the response is not an array, show an error message
+    resultsContainer.innerHTML = "<p>There was an error fetching the results.</p>";
+    return;
+  }
+
+  if (data.length === 0) {
+    resultsContainer.innerHTML = "<p>No results found</p>";
+    return;
+  }
+
+  // Display the results
+  data.forEach(item => {
+    const itemElement = document.createElement("div");
+    itemElement.classList.add("search-item");
+
+    itemElement.innerHTML = `
+      <h3>${item.name}</h3>
+      <p>${item.description}</p>
+      <p><strong>Price:</strong> $${item.price}</p>
+    `;
+
+    resultsContainer.appendChild(itemElement);
+  });
+}
+    </script>
+</body>
+</html>

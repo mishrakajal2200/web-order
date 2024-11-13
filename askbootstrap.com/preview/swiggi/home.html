@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from askbootstrap.com/preview/swiggi/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:29:45 GMT -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Askbootstrap">
+<meta name="author" content="Askbootstrap">
+<link rel="icon" type="image/png" href="img/fav.png">
+<title>Swiggi - Online Food Ordering Website Mobile Template</title>
+
+
+<link rel="stylesheet" type="text/css" href="vendor/slick/slick.min.css" />
+<link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.min.css" />
+
+<link href="vendor/icons/feather.css" rel="stylesheet" type="text/css">
+
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="./img/css/style.css" rel="stylesheet">
+
+<link href="vendor/sidebar/demo.css" rel="stylesheet">
+    <!-- Bootstrap CSS (using Bootstrap 5 here) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" href="slick/slick.css"/> -->
+<!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
+
+
+ 
+<!-- <style> 
+  body{
+    overflow-x: hidden
+  }
+    .navbar-toggler {
+      background-color: #fff;
+    }
+    
+    .navbar-toggler:hover {
+      background-color: lightgray;
+    }
+  
+    /* Add to Cart button styling */
+    .add-to-cart-btn {
+      background-color: #dc503d; 
+      color: #fff;              /* White text */
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: inline-block; /* Ensure it's displayed */
+      margin-top: 100px;
+      min-width: 50px; /* Ensure a minimum width */
+      text-align: center; /* Center the text */
+    }
+  
+    .add-to-cart-btn:hover {
+      background-color: #d8e2da; /* Darker green on hover */
+      color: black;
+    }
+  
+    /* Pricing meta styles */
+    .pricing-meta {
+      margin-top: 3px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    /* Other buttons styles */
+    #logout {
+      background-color: white;
+      color: black;
+    }
+  
+    #logout:hover {
+      background-color: rgb(201, 180, 178);
+      color: #e3351f;
+    }
+  
+    #order {
+      background-color: #ffff;
+      color: black;
+    }
+  
+    #order:hover {
+      background-color: rgb(201, 180, 178);
+      color: #e3351f;
+    }
+  
+    #outlet{
+      background-color: #ffff;
+      color: black;
+    }
+  
+    #outlet:hover{
+      background-color: rgb(201, 180, 178);
+      color: #e3351f;
+    }
+  
+    /* Pricing meta styles */
+    .pricing-meta {
+      margin-top: 3px;
+      font-size: 18px;
+      font-weight: bold;
+
+    }
+    /* Default styles (mobile-first) */
+.shop-list-wrap {
+    padding: 0 10px;
+}
+
+.list-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.add-button-wrap {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+/* For smaller screens (max-width: 767px) */
+@media (max-width: 767px) {
+    .list-product {
+        flex-direction: column; /* Stack items vertically */
+         /* Align items to the left */
+    }
+
+    .add-button-wrap {
+        width: 100%;
+        text-align: center; /* Center the button on smaller screens */
+       
+    }
+    .add-button {
+        margin: 0; /* Ensure there's no margin around the button itself */
+        margin-bottom: "5px";
+    }
+}
+
+.add-button-wrap {
+    margin: 0; /* Remove any margin from the container */
+    padding: 0; /* Remove any padding from the container */
+}
+
+.add-button {
+    margin: 0; /* Ensure there is no margin above the button */
+    padding: 10px 20px; /* Add padding to the button itself if needed */
+}
+
+/* Optional: Remove margin from other elements */
+.product-info {
+    margin: 0;
+    padding: 0;
+}
+   
+    /* Custom modal styling */
+#cartModal1 .modal-dialog {
+  max-width: 300px; /* Full width on small screens */
+        margin: 0 auto; /* Center the modal horizontally */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 30vh; /* Make the modal take full height for vertical centering */
+}
+
+#cartModal1 .modal-content {
+  max-height: 50vh; /* Adjust height for small screens */
+  width: 90%; /* Optional: Set modal content width to 90% of screen */
+}
+
+@media (max-width: 576px) {
+    #cartModal1 .modal-dialog {
+        max-width: 50%; /* Full width on small screens */
+        margin: 0 auto; /* Center the modal horizontally */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50vh; /* Make the modal take full height for vertical centering */
+    }
+    #cartModal1 .modal-content {
+        max-height: 50vh; /* Adjust height for small screens */
+        width: 90%; /* Optional: Set modal content width to 90% of screen */
+    }
+}
+
+
+  
+</style> -->
+<!-- <style>
+    .shop-list-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  flex-wrap: wrap; /* Allows wrapping of child elements */
+}
+
+.list-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Takes remaining space */
+  padding: 10px;
+  min-width: 0; /* Allows flex-shrink behavior */
+}
+
+.left-img {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.img-block {
+  display: flex;
+  align-items: center;
+}
+
+.product-decs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  justify-content: center;
+  flex-grow: 1; /* Ensure it grows as needed */
+}
+
+.add-button-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 0 0 auto; /* Prevents it from shrinking */
+  padding: 10px;
+}
+
+@media (max-width: 992px) { /* Medium screens (tablet) */
+  .list-product {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .add-button-wrap {
+    justify-content: flex-end; /* Keep it aligned to the right */
+  }
+}
+
+@media (max-width: 768px) { /* Smaller screens (tablets and phones) */
+  .list-product {
+    flex-direction: column; /* Stacks elements vertically */
+  }
+  
+  .product-info {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  
+  .add-button-wrap {
+    width: 100%;
+    justify-content: center; /* Centers the "Add" button on smaller screens */
+    margin-top: 10px; /* Adds space above the button */
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) { /* Extra small screens (phones) */
+  .img-block img {
+    width: 50px; /* Smaller image size on mobile */
+    height: 50px;
+  }
+
+  .product-decs h2 {
+    font-size: 16px; /* Smaller font size for mobile */
+  }
+
+  .pricing-meta {
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .add-button-wrap a {
+    padding: 8px 16px; /* Smaller button padding */
+  }
+}
+
+</style> -->
+<!-- <style>
+    /* General Styles */
+.shop-list-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.list-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: nowrap;
+ 
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 4; /* Allows the product info to take remaining space */
+}
+
+.left-img {
+  display: flex;
+  align-items: center;
+}
+
+.img-block {
+  display: flex;
+  align-items: center;
+}
+
+.product-decs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.add-button-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  flex: 0 0 auto;
+}
+
+/* Medium Screens */
+@media (max-width: 992px) {
+    .list-product {
+  display: flex;
+  
+ 
+}
+  
+  .product-info {
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  .add-button-wrap {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 10px;
+  }
+}
+
+/* Small Screens */
+@media (max-width: 768px) {
+  .list-product {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-info {
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+
+  .left-img {
+    justify-content: center;
+  }
+
+  .product-decs {
+    text-align: center;
+    margin-left: 0;
+  }
+  
+  .add-button-wrap {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+  .img-block img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .product-decs h2 {
+    font-size: 16px;
+  }
+
+  .pricing-meta {
+    font-size: 14px;
+  }
+
+  .add-button-wrap a {
+    padding: 8px 16px;
+   
+  }
+}
+
+</style> -->
+
+
+<style>
+    /* Global Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Ensure padding and borders don't cause overflow */
+  margin: 0;
+  padding: 0;
+}
+
+/* Body Reset */
+body {
+  overflow-x: hidden; /* Hide horizontal overflow */
+  margin: 0; /* Reset any default margins */
+}
+.custom-img{
+  width: 60px;
+  height: 60px;
+}
+
+.navbar-toggler {
+      background-color: #fff;
+    }
+    
+    .navbar-toggler:hover {
+      background-color: lightgray;
+    }
+#logout {
+      background-color: white;
+      color: black;
+    }
+  
+    #logout:hover {
+      background-color: rgb(201, 180, 178);
+      color: #e3351f;
+    }
+  
+    #order {
+      background-color: #ffff;
+      color: black;
+    }
+  
+    #order:hover {
+      background-color: rgb(201, 180, 178);
+      color: #e3351f;
+    }
+  
+    #outlet{
+      background-color: #ffff;
+      color: black;
+    }
+  
+    #outlet:hover{
+      background-color: rgb(201, 180, 178);
+      color: #e3351f;
+    }
+    .add-button-wrap a{
+        color:white;
+        background-color: #e3351f;
+        
+    }
+  
+    /* General Styles */
+.shop-list-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.list-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: nowrap; /* Keeps items in a single row unless screen is too small */
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  
+}
+.add-button-wrap a {
+    padding: 8px 20px;
+    margin-right: 17px;
+  }
+  .add-button-wrap a:hover{
+    background-color: lightgray;
+    color: black;
+  } 
+
+.left-img {
+  display: flex;
+  align-items: center;
+ 
+}
+
+.img-block {
+  display: flex;
+  align-items: center;
+}
+
+.product-decs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+
+}
+
+ /* Custom modal styling */
+ #cartModal1 .modal-dialog {
+  max-width: 300px; /* Full width on small screens */
+        margin: 0 auto; /* Center the modal horizontally */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 30vh; /* Make the modal take full height for vertical centering */
+}
+
+#cartModal1 .modal-content {
+  max-height: 50vh; /* Adjust height for small screens */
+  width: 90%; /* Optional: Set modal content width to 90% of screen */
+}
+
+#searchResults {
+      margin-top: 20px;
+  }
+
+  .search-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 15px;
+  }
+
+  .search-item h3 {
+      margin: 0;
+      font-size: 1.5em;
+  }
+
+  .search-item p {
+      margin: 5px 0;
+  }
+  .add-button{
+    background-color: #e3351f;
+    padding: 10px;
+   color: #fff;
+  }
+  .add-button:hover{
+    background-color: lightgrey;
+    color: #e3351f;
+  }
+
+ 
+</style>
+
+
+</head>
+<body class="fixed-bottom-bar">
+<div class="osahan-home-page">
+
+
+<div id="viewCartMainDiv"></div>
+
+<div class="bg-primary p-3">
+<div class="text-white">
+<div class="title d-flex align-items-center">
+
+<span></span>
+</a>
+</div>
+</div>
+
+<!-- toggle navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <!-- Navbar Brand or Logo -->
+        <img class="navbar-brand" src="./img/extraaz2logo.webp" style="width: 200px;"></img>
+
+        <!-- Toggler for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible Content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Location Name -->
+            <div id="locationName" style="color: #ffff;"></div>
+
+            <!-- Navbar Links (Delivery & Takeaway) -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <label class="nav-link">
+                        <input type="radio" class="input-radio off" name="pilih" value="Delivery">
+                        <span style="color: #ffff;">Delivery</span>
+                    </label>
+                </li>
+                <li class="nav-item">
+                    <label class="nav-link">
+                        <input type="radio" class="input-radio on" checked name="pilih" value="TakeAway">
+                       <span style="color: #ffff;">Takeaway</span>
+                    </label>
+                </li>
+            </ul>
+
+            <!-- Right Side Buttons (Change Outlet, My Orders, Logout) -->
+            <div class="aaa d-flex">
+                <div>
+                    <a href="location.html"  class="mt-1 text text-danger" style="text-decoration: none;">
+                        <button type="button" id="outlet" class="btn btn-danger btn-rounded p-2 px-3 mx-2 d-lg-block"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                           <span>Change Outlet</span>
+                        </button>
+                    </a>
+                </div>
+                <button type="button" id="order" class="btn btn-danger btn-rounded p-2 px-3 mx-2 d-lg-block"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    My Orders
+                </button>
+                <button type="button" id="logout" class="btn btn-outline-danger btn-rounded p-2 px-3 mx-2 d-lg-block"
+                    data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- search bar -->
+<div class="input-group mt-3 rounded shadow-sm overflow-hidden">
+<div class="input-group-prepend">
+<button class="border-0 btn btn-outline-secondary text-dark bg-white btn-block"><i class="feather-search"></i></button>
+</div>
+<input type="text" class="shadow-none border-0 form-control" id="searchInput" placeholder="Search for items or categories" aria-label aria-describedby="basic-addon1">
+</div>
+</div>
+<div id="searchResults"></div>
+<!-- <div class="input-group mt-3 rounded shadow-sm overflow-hidden">
+  <div class="input-group-prepend">
+      <button class="border-0 btn btn-outline-secondary text-dark bg-white btn-block">
+          <i class="feather-search"></i> Search
+      </button>
+  </div>
+  <input type="text" class="shadow-none border-0 form-control" id="searchInput" placeholder="Search for items or categories">
+</div> -->
+
+<!-- here all searched items appear -->
+<div id="itemsContainer"></div>
+
+
+<div class="bg-light">
+
+<!-- categories -->
+<div class="cat-slider border-bottom" id="custom-categories-container">
+</div>
+
+<!-- filtered categories -->
+<div class="cat-item" id="all-categories-container">
+</div>
+  
+<!-- filtered items -->
+<div class="shop-list-wrap product-link" id="all-items-container">
+  </div>
+
+<!-- items details container -->
+<div id="item-details-container" style="text-wrap: nowrap;"></div>
+
+<!-- modal container -->
+<div class="modal fade" id="catmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">All Categories</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              <div class="main-heading">
+                  <h2>Categories</h2>
+              </div>
+              <div class="sidebar-widget">
+                  <div class="sidebar-widget-list" id="Modal-container">
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+
+<div id="items-container"></div>
+<div id="cart-items-container" style="display: none;"></div>
+<!-- <div class="modal fade" id="catmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">All Categories</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              <div class="main-heading">
+                  <h2>Categories</h2>
+              </div>
+              <div class="sidebar-widget">
+                  <div class="sidebar-widget-list" id="Modal-container">
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div> -->
+
+ <!--order history Modal-->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" style="color: red;" id="exampleModalLabel">Order History</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalBody">
+              <!-- <div class="d-flex flex-row">
+                  <div class="card shadow-lg">
+                      <div class="card-body">
+                          <h1>HII</h1>
+                      </div>
+
+                  </div>
+
+              </div> -->
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+      </div>
+  </div>
+</div>
+
+<div id="modifierData"></div>
+
+<div class="p-3 title d-flex align-items-center">
+<h5 class="m-0 pt-3">Most sales</h5>
+<a class="pt-3 font-weight-bold ml-auto" href="#">26 places <i class="feather-chevrons-right"></i></a>
+</div>
+
+<div class="most_sale px-3 pb-3">
+<div class="row">
+<div class="col-12">
+<div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+<div class="list-card-image">
+<div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+<div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
+<div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
+<a href="restaurant.html">
+<img src="img/sales1.png" class="img-fluid item-img w-100">
+</a>
+</div>
+<div class="p-3 position-relative">
+<div class="list-card-body">
+<h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
+</a>
+</h6>
+<p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
+<p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
+</div>
+<div class="list-card-badge">
+<span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-12 pt-2">
+<div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+<div class="list-card-image">
+<div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+<div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
+<div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
+<a href="restaurant.html">
+<img src="img/sales2.png" class="img-fluid item-img w-100">
+</a>
+</div>
+<div class="p-3 position-relative">
+<div class="list-card-body">
+<h6 class="mb-1"><a href="restaurant.html" class="text-black">Thai Famous Cuisine</a></h6>
+<p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
+<p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
+</div>
+<div class="list-card-badge">
+<span class="badge badge-success">OFFER</span> <small>65% off</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-12 pt-2">
+<div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+<div class="list-card-image">
+<div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+<div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
+<div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
+<a href="restaurant.html">
+<img src="img/sales3.png" class="img-fluid item-img w-100">
+</a>
+</div>
+<div class="p-3 position-relative">
+<div class="list-card-body">
+<h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
+</a>
+</h6>
+<p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
+<p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
+</div>
+<div class="list-card-badge">
+<span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center">
+<div class="row">
+<div class="col selected">
+<a href="home.html" class="text-danger small font-weight-bold text-decoration-none">
+<p class="h4 m-0"><i class="feather-home text-danger"></i></p>
+Home
+</a>
+</div>
+<div class="col">
+<a href="most_popular.html" class="text-dark small font-weight-bold text-decoration-none">
+<p class="h4 m-0"><i class="feather-map-pin"></i></p>
+Trending
+</a>
+</div>
+<!-- <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+<div class="bg-danger rounded-circle mt-n0 shadow">
+<a href="checkout.html" class="text-white small font-weight-bold text-decoration-none">
+<i class="feather-shopping-cart" id="item-count" ></i>
+</a>
+</div>
+</div> -->
+<div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+  <div class="bg-danger rounded-circle mt-0 shadow">
+      <a href="checkout.html" class="text-white small font-weight-bold text-decoration-none">
+          <i class="feather-shopping-cart"></i>
+          <span id="item-count" class="badge bg-success position-absolute" style="top: 0; right: 0; border-radius: 50%;">0</span>
+      </a>
+  </div>
+</div>
+<div class="col">
+<a href="favorites.html" class="text-dark small font-weight-bold text-decoration-none">
+<p class="h4 m-0"><i class="feather-heart"></i></p>
+Favorites
+</a>
+</div>
+<div class="col">
+<a href="profile.html" class="text-dark small font-weight-bold text-decoration-none">
+<p class="h4 m-0"><i class="feather-user"></i></p>
+Profile
+</a>
+</div>
+</div>
+</div>
+</div>
+<nav id="main-nav">
+<ul class="second-nav">
+<li><a href="index.html"><i class="feather-grid mr-2"></i> Intro</a>
+<li><a href="landing.html"><i class="feather-layers mr-2"></i> Landing</a>
+<li><a href="home.html"><i class="feather-home mr-2"></i> Homepage</a></li>
+<li>
+<a href="#"><i class="feather-edit-2 mr-2"></i> Authentication</a>
+<ul>
+<li><a href="login.html">Login</a>
+<li><a href="signup.html">Register</a>
+<li><a href="forgot_password.html">Forgot Password</a>
+<li><a href="verification.html">Verification</a>
+<li><a href="location.html">Location</a>
+<li><a href="select_country.html">Select Country</a>
+</ul>
+</li>
+<li><a href="trending.html"><i class="feather-trending-up mr-2"></i> Trending</a>
+<li><a href="most_popular.html"><i class="feather-award mr-2"></i> Most Popular</a>
+<li><a href="restaurant.html"><i class="feather-paperclip mr-2"></i> Restaurant Detail</a>
+<li><a href="recipe.html"><i class="feather-file-text mr-2"></i> Recipe</a>
+<li><a href="checkout.html"><i class="feather-list mr-2"></i> Checkout</a>
+<li><a href="map.html"><i class="feather-map-pin mr-2"></i> Live Map</a>
+<li><a href="payment.html"><i class="feather-credit-card mr-2"></i> Payment</a>
+<li>
+<a href="#"><i class="feather-user mr-2"></i> Profile</a>
+<ul>
+<li><a href="profile.html">Profile</a></li>
+<li><a href="favorites.html">Favorites</a>
+</ul>
+</li>
+<li>
+<a href="#"><i class="feather-book mr-2"></i> Pages</a>
+<ul>
+<li><a href="filters.html">Filters</a>
+<li><a href="terms.html">Terms & conditions</a>
+<li><a href="faq.html">FAQ</a>
+<li><a href="privacy.html">Privacy & Policy</a>
+<li><a href="contact-us.html">Contact Us</a>
+</ul>
+</li>
+<li>
+<a href="#"><i class="feather-alert-triangle mr-2"></i> Error</a>
+<ul>
+<li><a href="not-found.html">Not Found</a>
+<li><a href="maintence.html"> Maintence</a>
+<li><a href="coming-soon.html">Coming Soon</a>
+</ul>
+</li>
+<li>
+<a href="#"><i class="feather-link mr-2"></i> Navigation Link Example</a>
+<ul>
+<li>
+<a href="#">Link Example 1</a>
+<ul>
+<li>
+<a href="#">Link Example 1.1</a>
+<ul>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+</ul>
+</li>
+<li>
+<a href="#">Link Example 1.2</a>
+<ul>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#">Link Example 2</a></li>
+<li><a href="#">Link Example 3</a></li>
+<li><a href="#">Link Example 4</a></li>
+<li data-nav-custom-content>
+<div class="custom-message">
+You can add any custom content to your navigation items. This text is just an example.
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="bottom-nav">
+<li class="email">
+<a class="text-danger" href="home.html">
+<p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+Home
+</a>
+</li>
+<li class="github">
+<a href="faq.html">
+<p class="h5 m-0"><i class="feather-message-circle"></i></p>
+FAQ
+</a>
+</li>
+<li class="ko-fi">
+<a href="contact-us.html">
+<p class="h5 m-0"><i class="feather-phone"></i></p>
+Help
+</a>
+</li>
+</ul>
+</nav>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body p-0">
+<div class="osahan-filter">
+<div class="filter">
+
+<div class="p-3 bg-light border-bottom">
+<h6 class="m-0">SORT BY</h6>
+</div>
+<div class="custom-control border-bottom px-0  custom-radio">
+<input type="radio" id="customRadio1" name="location" class="custom-control-input" checked>
+<label class="custom-control-label py-3 w-100 px-3" for="customRadio1">Top Rated</label>
+</div>
+<div class="custom-control border-bottom px-0  custom-radio">
+<input type="radio" id="customRadio2" name="location" class="custom-control-input">
+<label class="custom-control-label py-3 w-100 px-3" for="customRadio2">Nearest Me</label>
+</div>
+<div class="custom-control border-bottom px-0  custom-radio">
+<input type="radio" id="customRadio3" name="location" class="custom-control-input">
+<label class="custom-control-label py-3 w-100 px-3" for="customRadio3">Cost High to Low</label>
+</div>
+<div class="custom-control border-bottom px-0  custom-radio">
+<input type="radio" id="customRadio4" name="location" class="custom-control-input">
+<label class="custom-control-label py-3 w-100 px-3" for="customRadio4">Cost Low to High</label>
+</div>
+<div class="custom-control border-bottom px-0  custom-radio">
+<input type="radio" id="customRadio5" name="location" class="custom-control-input">
+<label class="custom-control-label py-3 w-100 px-3" for="customRadio5">Most Popular</label>
+</div>
+
+<div class="p-3 bg-light border-bottom">
+<h6 class="m-0">FILTER</h6>
+</div>
+<div class="custom-control border-bottom px-0  custom-checkbox">
+<input type="checkbox" class="custom-control-input" id="defaultCheck1" checked>
+<label class="custom-control-label py-3 w-100 px-3" for="defaultCheck1">Open Now</label>
+</div>
+<div class="custom-control border-bottom px-0  custom-checkbox">
+<input type="checkbox" class="custom-control-input" id="defaultCheck2">
+<label class="custom-control-label py-3 w-100 px-3" for="defaultCheck2">Credit Cards</label>
+</div>
+<div class="custom-control border-bottom px-0  custom-checkbox">
+<input type="checkbox" class="custom-control-input" id="defaultCheck3">
+<label class="custom-control-label py-3 w-100 px-3" for="defaultCheck3">Alcohol Served</label>
+</div>
+
+<div class="p-3 bg-light border-bottom">
+<h6 class="m-0">ADDITIONAL FILTERS</h6>
+</div>
+<div class="px-3 pt-3">
+<input type="range" class="custom-range" min="0" max="100" name>
+<div class="form-row">
+<div class="form-group col-6">
+<label>Min</label>
+<input class="form-control" placeholder="$0" type="number">
+</div>
+<div class="form-group text-right col-6">
+<label>Max</label>
+<input class="form-control" placeholder="$1,0000" type="number">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer p-0 border-0">
+<div class="col-6 m-0 p-0">
+<button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">Close</button>
+</div>
+<div class="col-6 m-0 p-0">
+<button type="button" class="btn btn-primary btn-lg btn-block">Apply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabelName"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              <div class="row justify-content-center">
+                  <div class="col-md-8">
+                      <form>
+                          <div class="mb-3">
+                              <div class="input-group ">
+                                  <input type="text" class="form-control mx-2" id="otp1" maxlength="1"
+                                      required>
+                                  <input type="text" class="form-control mx-2" id="otp2" maxlength="1"
+                                      required>
+                                  <input type="text" class="form-control mx-2" id="otp3" maxlength="1"
+                                      required>
+                                  <input type="text" class="form-control mx-2" id="otp4" maxlength="1"
+                                      required>
+                              </div>
+                              <div class="float-end mt-1">
+                                  <a href="#">RESEND OTP</a>
+                              </div>
+                          </div>
+
+                          <!-- <button type="submit" href="cart.html" class="btn btn-danger mt-3"
+                              id="continueButton">Continue</button> -->
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>
+
+
+<script src="vendor/jquery/jquery.min.js" type="fd4b0ea0fad37b27ee43ba5d-text/javascript"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="fd4b0ea0fad37b27ee43ba5d-text/javascript"></script>
+
+
+<script src="vendor/jquery/jquery.min.js" type="9585e910fdea23e0797d7a55-text/javascript"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="9585e910fdea23e0797d7a55-text/javascript"></script>
+
+<script type="9585e910fdea23e0797d7a55-text/javascript" src="vendor/slick/slick.min.js"></script>
+
+<script type="9585e910fdea23e0797d7a55-text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+
+<script src="js/osahan.js" type="9585e910fdea23e0797d7a55-text/javascript"></script>
+<script src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="9585e910fdea23e0797d7a55-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8bc3354309ce85dc","version":"2024.8.0","r":1,"serverTiming":{"name":{"cfL4":true}},"token":"dd471ab1978346bbb991feaa79e6ce5c","b":1}' crossorigin="anonymous"></script>
+
+<!-- jQuery first -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="/js/mainPage.js"></script>
+
+<script>
+  //#region  Code_for_SubCategories in Parent Category
+  function categorizeData(data) {
+      const categorizedData = {};
+
+      data.forEach(category => {
+          if (category.parent_category) {
+              if (!categorizedData[category.parent_category]) {
+                  categorizedData[category.parent_category] = {
+                      subcategories: [],
+                  };
+              }
+              categorizedData[category.parent_category].subcategories.push(category);
+          } else {
+              if (!categorizedData[category.id]) {
+                  categorizedData[category.id] = {
+                      category,
+                      subcategories: [],
+                  };
+              }
+          }
+      });
+      return categorizedData;
+  }
+
+  function updateCategories(categorizedData) {
+      const categoriesContainer = document.getElementById('categories-container');
+
+      // Clear existing content
+      categoriesContainer.innerHTML = '';
+
+      // Create a new unordered list
+      const ul = document.createElement('ul');
+
+      // Render top-level categories
+      Object.values(categorizedData).forEach(categoryData => {
+          const category = categoryData.category;
+          const subcategories = categoryData.subcategories;
+
+          if (category) {
+              const li = document.createElement('li');
+              const divRow = document.createElement('div');
+              divRow.className = 'sidebar-widget-list-left';
+
+              const checkboxInput = document.createElement('input');
+              checkboxInput.type = 'checkbox';
+
+              const categoryLink = document.createElement('a');
+              categoryLink.href = '#';
+              categoryLink.innerHTML = `${category.cat_name || 'Unknown Category'} <span>(${subcategories.length})</span>`;
+              categoryLink.addEventListener('click', () => {
+                  const items = subcategories.length > 0 ? subcategories[0].items : [];
+                  fetchItemsAndDisplay(category.cat_name, items);
+              });
+
+              const checkmarkSpan = document.createElement('span');
+              checkmarkSpan.className = 'checkmark';
+
+              divRow.appendChild(checkboxInput);
+              divRow.appendChild(categoryLink);
+              divRow.appendChild(checkmarkSpan);
+              li.appendChild(divRow);
+              ul.appendChild(li);
+
+              // Render subcategories if present
+              subcategories.forEach(subcategory => {
+                  const subLi = document.createElement('li');
+                  const subDivRow = document.createElement('div');
+                  subDivRow.className = 'sidebar-widget-list-left';
+
+                  const subCheckboxInput = document.createElement('input');
+                  subCheckboxInput.type = 'checkbox';
+
+                  const subcategoryLink = document.createElement('a');
+                  subcategoryLink.href = '#';
+                  subcategoryLink.innerHTML = `${subcategory.cat_name || 'Unknown Subcategory'} <span>(${subcategory.items.length})</span>`;
+                  subcategoryLink.addEventListener('click', () => fetchItemsAndDisplay(subcategory.cat_name, subcategory.items));
+
+                  const subCheckmarkSpan = document.createElement('span');
+                  subCheckmarkSpan.className = 'checkmark';
+
+                  subDivRow.appendChild(subCheckboxInput);
+                  subDivRow.appendChild(subcategoryLink);
+                  subDivRow.appendChild(subCheckmarkSpan);
+                  subLi.appendChild(subDivRow);
+                  ul.appendChild(subLi);
+              });
+          }
+      });
+      categoriesContainer.appendChild(ul);
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const searchButton = document.querySelector('.input-group-prepend button'); // Get the search button
+      const searchInput = document.getElementById('searchInput'); // Get the search input field
+
+      // Event listener for when the user clicks the search button
+      searchButton.addEventListener('click', function(event) {
+          event.preventDefault();  // Prevent form submission or any default behavior
+          const searchQuery = searchInput.value.trim(); // Get the query value and trim spaces
+
+          if (searchQuery) {
+              searchAPI(searchQuery); // Call the function to fetch the data
+          }
+      });
+
+      // Function to send the search query to the API and display the results
+      async function searchAPI(query) {
+          try {
+              const response = await fetch(`https://app.extraaazpos.com/api/search?query=${encodeURIComponent(query)}`);
+              const data = await response.json();
+
+              if (response.ok) {
+                  displayResults(data); // Display results if the response is ok
+              } else {
+                  console.error("No items found:", data.message);
+                  displayResults([]);  // No results found
+              }
+          } catch (error) {
+              console.error("Error fetching search results:", error);
+              displayResults([]);  // In case of error, show empty results
+          }
+      }
+
+      // Function to display the search results
+      function displayResults(items) {
+          const resultsContainer = document.getElementById("searchResults");
+          resultsContainer.innerHTML = ""; // Clear previous results
+
+          console.log("Displaying items:", items);  // Debugging line
+
+          if (items.length === 0) {
+              resultsContainer.innerHTML = "<p>No results found</p>";
+          } else {
+              items.forEach(item => {
+                  const itemElement = document.createElement("div");
+                  itemElement.classList.add("search-item");
+                  itemElement.innerHTML = `
+                      <h3>${item.name}</h3>
+                      <p>${item.description}</p>
+                  `;
+                  resultsContainer.appendChild(itemElement);
+              });
+          }
+      }
+  });
+</script>
+
+<!-- Bootstrap JS (using Bootstrap 5) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<!-- Mirrored from askbootstrap.com/preview/swiggi/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:09 GMT -->
+</html>

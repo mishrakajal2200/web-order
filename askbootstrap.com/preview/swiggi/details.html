@@ -1,0 +1,2411 @@
+<!doctype html>
+<html lang="en">
+  <!-- Mirrored from askbootstrap.com/preview/swiggi/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:23 GMT -->
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Askbootstrap" />
+    <meta name="author" content="Askbootstrap" />
+    <link rel="icon" type="image/png" href="img/fav.png" />
+    <title>Swiggi - Online Food Ordering Website Mobile Template</title>
+
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/slick/slick-theme.min.css"
+    />
+
+    <link href="vendor/icons/feather.css" rel="stylesheet" type="text/css" />
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="./img/css/style.css" rel="stylesheet" />
+
+    <link href="vendor/sidebar/demo.css" rel="stylesheet" />
+
+    <!-- Add Bootstrap for styling (optional) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Include jQuery from a CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap CSS (or other styles) -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Include Razorpay script -->
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .table-fixed {
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      .table-fixed tbody tr td {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .btn {
+        border-radius: 15px;
+      }
+
+      .shared-order-details {
+        margin-bottom: 20px;
+      }
+
+      .order-container {
+        max-width: 900px;
+        margin: 50px auto;
+      }
+    </style>
+  </head>
+  <body class="bg-light fixed-bottom-bar">
+    <div class="osahan-checkout">
+      <div
+        class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center"
+      >
+        <a class="toggle" href="#"><span></span></a>
+        <h4 class="font-weight-bold m-0 text-white pl-5">Order Details</h4>
+        <a class="text-white font-weight-bold ml-auto" href="home.html">
+          Close</a
+        >
+      </div>
+
+      <div class="p-3 osahan-cart-item">
+        <div
+          class="d-flex mb-3 osahan-cart-item-profile bg-white shadow rounded p-3 mt-n5"
+        >
+          <img
+            alt="osahan"
+            src="img/starter1.jpg"
+            class="mr-3 rounded-circle img-fluid"
+          />
+          <div class="d-flex flex-column">
+            <h6 class="mb-1 font-weight-bold">Place Your Order Here</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="row"
+      style="margin-top: 13vh; padding-left: 5vh; padding-right: 5vh"
+    >
+      <div class="col-sm-6">
+        <div class="card shadow-lg">
+          <img src="img/logo.png" alt="" style="width: 20vh; padding: 3vh" />
+          <h2
+            style="
+              text-align: end;
+              margin-top: -7vh;
+              font-weight: 800;
+              color: #1b1917;
+            "
+          >
+            <b>Details</b>
+          </h2>
+          <div class="col-md-8" style="display: flex">
+            <div class="d-inline-block mt-2 mx-2">
+              <i
+                class="fas fa-map-marker-alt"
+                style="font-size: 24px; color: black"
+              ></i>
+            </div>
+            <div class="d-inline-block">
+              <h6 style="color: rgb(15, 16, 15)">
+                <strong>Delivery to</strong>
+                <span>Vasant Vihar, New Delhi, Delhi, India</span>
+              </h6>
+            </div>
+          </div>
+          <div class="col-md-12" style="display: flex">
+            <div class="d-inline-block mt-2 mx-2">
+              <i
+                class="fab fa-whatsapp"
+                style="font-size: 24px; color: black"
+              ></i>
+            </div>
+            <div class="d-inline-block">
+              <h6 style="color: rgb(15, 16, 15)">
+                <strong id="custNo">7878678978</strong> (We’ll send order
+                updates on this no.)
+              </h6>
+            </div>
+            <!-- <div class="d-inline-block float-end">
+                            <h6 class="red-text">Change</h6>
+                        </div> -->
+          </div>
+          <div class="col-md-12" style="display: block" id="addressDiv">
+            <div class="d-inline mt-2 ms-0">
+              <div class="d-inline-block mt-2 mx-2">
+                <i class="fa fa-home" style="font-size: 21px; color: black"></i>
+              </div>
+              <div class="d-inline-block">
+                <h6 style="color: rgb(15, 16, 15)">
+                  <strong id="custNo"> Address</strong>
+                </h6>
+              </div>
+              <div class="d-inline-block float-end">
+                <button
+                  class="custom-btn btn-14"
+                  class="btn btn-primary btn-sm float-end"
+                  onclick="resetModal()"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addAddressModal"
+                >
+                  Add Address <i class="bi bi-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="d-inline">
+              <div
+                id="addressContainer"
+                class="ms-2"
+                style="
+                  margin-top: 10vh;
+                  overflow-y: auto;
+                  max-height: 37vh;
+                  margin-top: 7vh;
+                  /* scrollbar-width: none; */
+                "
+              ></div>
+            </div>
+
+            <div class="d-inline-block float-end">
+              <div class="controls-update" style="display: none; color: red">
+                <a href="#" style="color: red; padding: 16px">update</a>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="input-group mt-5 mb-5 mx-2">-->
+          <!--    <span class="input-group-text">-->
+          <!--        <i class="far fa-comment-alt" style="font-size: 14px"></i>-->
+          <!--    </span>-->
+          <!--    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+          <!--        style="background-color: #fff; border-color: #d4c6c6">-->
+          <!--        Preparation Instruction +-->
+          <!--    </button>-->
+          <!-- <button="submit" class="btn btn-light" >Preparation Instruction +</button> -->
+          <!--</div>-->
+        </div>
+      </div>
+      <!-- order details -->
+      <div class="col-sm-6">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <div id="orderDetails"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav id="main-nav">
+      <ul class="second-nav">
+        <li>
+          <a href="index.html"><i class="feather-grid mr-2"></i> Intro</a>
+        </li>
+        <li>
+          <a href="landing.html"><i class="feather-layers mr-2"></i> Landing</a>
+        </li>
+        <li>
+          <a href="home.html"><i class="feather-home mr-2"></i> Homepage</a>
+        </li>
+        <li>
+          <a href="#"><i class="feather-edit-2 mr-2"></i> Authentication</a>
+          <ul>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Register</a></li>
+            <li><a href="forgot_password.html">Forgot Password</a></li>
+            <li><a href="verification.html">Verification</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="select_country.html">Select Country</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="trending.html"
+            ><i class="feather-trending-up mr-2"></i> Trending</a
+          >
+        </li>
+        <li>
+          <a href="most_popular.html"
+            ><i class="feather-award mr-2"></i> Most Popular</a
+          >
+        </li>
+        <li>
+          <a href="restaurant.html"
+            ><i class="feather-paperclip mr-2"></i> Restaurant Detail</a
+          >
+        </li>
+        <li>
+          <a href="recipe.html"
+            ><i class="feather-file-text mr-2"></i> Recipe</a
+          >
+        </li>
+        <li>
+          <a href="checkout.html"><i class="feather-list mr-2"></i> Checkout</a>
+        </li>
+        <li>
+          <a href="map.html"><i class="feather-map-pin mr-2"></i> Live Map</a>
+        </li>
+        <li>
+          <a href="payment.html"
+            ><i class="feather-credit-card mr-2"></i> Payment</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="feather-user mr-2"></i> Profile</a>
+          <ul>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="feather-book mr-2"></i> Pages</a>
+          <ul>
+            <li><a href="filters.html">Filters</a></li>
+            <li><a href="terms.html">Terms & conditions</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="privacy.html">Privacy & Policy</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="feather-alert-triangle mr-2"></i> Error</a>
+          <ul>
+            <li><a href="not-found.html">Not Found</a></li>
+            <li><a href="maintence.html"> Maintence</a></li>
+            <li><a href="coming-soon.html">Coming Soon</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"
+            ><i class="feather-link mr-2"></i> Navigation Link Example</a
+          >
+          <ul>
+            <li>
+              <a href="#">Link Example 1</a>
+              <ul>
+                <li>
+                  <a href="#">Link Example 1.1</a>
+                  <ul>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Link Example 1.2</a>
+                  <ul>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Link Example 2</a></li>
+            <li><a href="#">Link Example 3</a></li>
+            <li><a href="#">Link Example 4</a></li>
+            <li data-nav-custom-content>
+              <div class="custom-message">
+                You can add any custom content to your navigation items. This
+                text is just an example.
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="bottom-nav">
+        <li class="email">
+          <a class="text-danger" href="home.html">
+            <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+            Home
+          </a>
+        </li>
+        <li class="github">
+          <a href="faq.html">
+            <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+            FAQ
+          </a>
+        </li>
+        <li class="ko-fi">
+          <a href="contact-us.html">
+            <p class="h5 m-0"><i class="feather-phone"></i></p>
+            Help
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <script
+      src="vendor/jquery/jquery.min.js"
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+    ></script>
+    <script
+      src="vendor/bootstrap/js/bootstrap.bundle.min.js"
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+    ></script>
+
+    <script
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+      src="vendor/slick/slick.min.js"
+    ></script>
+
+    <script
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+      src="vendor/sidebar/hc-offcanvas-nav.js"
+    ></script>
+
+    <script
+      src="js/osahan.js"
+      type="91829b7bdd9927fe0b329f0a-text/javascript"
+    ></script>
+    <script
+      src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="91829b7bdd9927fe0b329f0a-|49"
+      defer
+    ></script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"8bc3357c0ae785dc","version":"2024.8.0","r":1,"serverTiming":{"name":{"cfL4":true}},"token":"dd471ab1978346bbb991feaa79e6ce5c","b":1}'
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- <script>
+      fetch("/env.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const url = data.URL;
+          const restaurant_id =
+            localStorage.getItem("urlSegment") || "No restaurant ID found"; // Ensure a fallback value
+          const locationId =
+            sessionStorage.getItem("selectedLocationId") ||
+            "No location ID found"; // Ensure a fallback value
+
+          // Assuming tableId and areaName are available in the env.json response
+          const tableId = data.tableId || "No table ID found"; // Adjust this based on your actual data structure
+          const areaName = data.areaName || "No area name found"; // Adjust this based on your actual data structure
+
+          // Store tableId and areaName in sessionStorage
+          sessionStorage.setItem("tableId", tableId);
+          sessionStorage.setItem("areaName", areaName);
+
+          // Log the API URL, Restaurant ID, Location ID, Table ID, and Area Name
+          console.log("API URL:", url);
+          console.log("Restaurant ID:", restaurant_id);
+          console.log("Location ID:", locationId);
+          console.log("Table ID:", tableId);
+          console.log("Area Name:", areaName);
+
+          // Display customer number in UI
+          var customerNo = sessionStorage.getItem("customerNumber");
+          var custNo = document.getElementById("custNo");
+          if (custNo) {
+            custNo.textContent = customerNo;
+          }
+
+          // Fetch customer addresses
+          var customerId = sessionStorage.getItem("customerId");
+          if (customerId) {
+            fetchCustomerAddress(customerId);
+          } else {
+            console.error("Customer ID not found in session storage.");
+          }
+          function fetchCustomerAddress(customerId) {
+            const token = sessionStorage.getItem("token");
+            if (!token) {
+              window.location.href = "index.html"; // Redirect if no token
+              return;
+            }
+
+            $.ajax({
+              url: `${url}/api/getCustomerAddresses/${customerId}`,
+              type: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+              success: function (response) {
+                console.log("Customer Address Response:", response);
+
+                const addresses = response.data;
+                if (addresses && addresses.length > 0) {
+                  $("#addressContainer").empty();
+                  addresses.forEach((address) => {
+                    appendAddressToContainer(address);
+                  });
+                } else {
+                  console.log("No addresses found.");
+                }
+              },
+              error: function (error) {
+                console.error("Error fetching customer addresses:", error);
+              },
+            });
+          }
+
+          function appendAddressToContainer(address) {
+            const addressHtml = `
+              <div class="mt-4">
+                  <div class="address-item border p-3 mb-3" data-id="${address.id}">
+                      <p class="mb-0">
+                          <span class="fw-bold">${address.address}</span>, ${address.city}, ${address.state}, ${address.country} - ${address.pincode}
+                      </p>
+                      <div class="mt-2">
+                          <button class="btn btn-primary btn-sm edit-address" data-id="${address.id}">
+                              <i class="fas fa-pencil-alt"></i> Edit
+                          </button>
+                          <button class="btn btn-danger btn-sm delete-address" data-id="${address.id}">
+                              <i class="fas fa-trash-alt"></i> Delete
+                          </button>
+                      </div>
+                  </div>
+              </div>
+            `;
+            $("#addressContainer").append(addressHtml);
+            // Attach event listeners to each address
+            $(`[data-id="${address.id}"]`).on("click", function () {
+              $(".address-item").removeClass("selected-address");
+              $(this).addClass("selected-address");
+
+              const selectedAddressId = $(this).data("id");
+              sessionStorage.setItem("selectedAddressId", selectedAddressId);
+              console.log("Selected Address ID:", selectedAddressId);
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching env.json:", error);
+        });
+    </script> -->
+    <!-- details.html -->
+    <!-- <script>
+      fetch("/env.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const url = data.URL;
+          const restaurant_id =
+            localStorage.getItem("urlSegment") || "No restaurant ID found"; // Ensure a fallback value
+          const locationId =
+            sessionStorage.getItem("selectedLocationId") ||
+            "No location ID found"; // Ensure a fallback value
+
+          // Retrieve tableId and areaName from sessionStorage
+          const tableId =
+            sessionStorage.getItem("tableId") || "No table ID found";
+          const areaName =
+            sessionStorage.getItem("areaName") || "No area name found";
+
+          // Log the API URL, Restaurant ID, Location ID, Table ID, and Area Name
+          console.log("API URL:", url);
+          console.log("Restaurant ID:", restaurant_id);
+          console.log("Location ID:", locationId);
+          console.log("Table ID:", tableId); // Now this value is retrieved
+          console.log("Area Name:", areaName); // Now this value is retrieved
+
+          // Display customer number in UI
+          var customerNo = sessionStorage.getItem("customerNumber");
+          var custNo = document.getElementById("custNo");
+          if (custNo) {
+            custNo.textContent = customerNo;
+          }
+
+          // Fetch customer addresses
+          var customerId = sessionStorage.getItem("customerId");
+          if (customerId) {
+            fetchCustomerAddress(customerId);
+          } else {
+            console.error("Customer ID not found in session storage.");
+          }
+
+          function fetchCustomerAddress(customerId) {
+            const token = sessionStorage.getItem("token");
+            if (!token) {
+              window.location.href = "index.html"; // Redirect if no token
+              return;
+            }
+
+            $.ajax({
+              url: `${url}/api/getCustomerAddresses/${customerId}`,
+              type: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+              success: function (response) {
+                console.log("Customer Address Response:", response);
+
+                const addresses = response.data;
+                if (addresses && addresses.length > 0) {
+                  $("#addressContainer").empty();
+                  addresses.forEach((address) => {
+                    appendAddressToContainer(address);
+                  });
+                } else {
+                  console.log("No addresses found.");
+                }
+              },
+              error: function (error) {
+                console.error("Error fetching customer addresses:", error);
+              },
+            });
+          }
+
+          function appendAddressToContainer(address) {
+            const addressHtml = `
+              <div class="mt-4">
+                  <div class="address-item border p-3 mb-3" data-id="${address.id}">
+                      <p class="mb-0">
+                          <span class="fw-bold">${address.address}</span>, ${address.city}, ${address.state}, ${address.country} - ${address.pincode}
+                      </p>
+                      <div class="mt-2">
+                          <button class="btn btn-primary btn-sm edit-address" data-id="${address.id}">
+                              <i class="fas fa-pencil-alt"></i> Edit
+                          </button>
+                          <button class="btn btn-danger btn-sm delete-address" data-id="${address.id}">
+                              <i class="fas fa-trash-alt"></i> Delete
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              `;
+            $("#addressContainer").append(addressHtml);
+            // Attach event listeners to each address
+            $(`[data-id="${address.id}"]`).on("click", function () {
+              $(".address-item").removeClass("selected-address");
+              $(this).addClass("selected-address");
+
+              const selectedAddressId = $(this).data("id");
+              sessionStorage.setItem("selectedAddressId", selectedAddressId);
+              console.log("Selected Address ID:", selectedAddressId);
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching env.json:", error);
+        });
+    </script> -->
+
+    <!-- <script>
+      var url = "";
+      var restaurantId = "";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/env.json")
+          .then((response) => response.json())
+          .then((data) => {
+            url = data.URL;
+            // Check if restaurantId is already in localStorage
+            const storedRestaurantId = localStorage.getItem("urlSegment");
+
+            if (storedRestaurantId) {
+              restaurantId = storedRestaurantId;
+            } else {
+              // If not found, log an error or set a default value
+              console.error("Restaurant ID not found in localStorage");
+              restaurantId = "EPOS737290"; // Default or hardcoded value
+            }
+
+            console.log("API URL:", url);
+            console.log("Restaurant ID:", restaurantId);
+
+            const tableId = sessionStorage.getItem("tableId");
+
+            // Check if tableId is available
+            if (tableId) {
+              console.log("Fetched Table ID:", tableId);
+              // Use the tableId as needed in your details logic
+            } else {
+              console.log("No Table ID found in sessionStorage.");
+              // Handle the case where tableId is not found
+            }
+          })
+          .catch((error) => console.error("Error fetching env.json:", error));
+      });
+
+      function fetchOrderDetails(tableId) {
+        const token = sessionStorage.getItem("token");
+
+        if (token == null) {
+          window.location.href = "login.html";
+        }
+        const apiUrl = url + `/api/getCartItems?tableId=${tableId}`;
+
+        console.log("Fetching order details for Table ID:", tableId); // Debug log
+
+        fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Order details response:", data); // Debug log
+            updateOrderDetails(data);
+          })
+          .catch((error) => {
+            console.error("Error fetching order details:", error);
+          });
+      }
+
+      function updateOrderDetails(data) {
+        const orderDetailsContainer = document.getElementById("orderDetails");
+        orderDetailsContainer.innerHTML = "";
+        console.log(data);
+
+        if (data.data.length > 0) {
+          const firstOrder = data.data[0];
+          const sharedOrderDetailsHtml = `
+        <div class="card-body p-0">
+            <div class="shared-order-details mb-4">
+                <h2 class="mb-3 "  style="color:black ;text-align: center;font-weight: 800;">Bill Details </h2>
+                <table class="table table-fixed mb-0">
+                    <tbody>
+                        <tr>
+                            <td><strong>Order Id : </strong></td>
+                            <td>${firstOrder.table_id}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Order Type : </strong></td>
+                            <td>${firstOrder.areaName}</td>
+                        </tr>
+                        ${
+                          firstOrder.areaName == "Dine-In"
+                            ? `
+                        <tr>
+                            <td><strong>Cover Count:</strong></td>
+                            <td>${firstOrder.cover_count}</td>
+                        </tr>`
+                            : ""
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+
+          orderDetailsContainer.innerHTML += sharedOrderDetailsHtml;
+          var count = 1;
+          const orderItemsTableHtml = `
+        <div class="card-body pt-0">
+            <div class="table-responsive">
+                <table class="table table-fixed mb-0">
+                    <thead>
+                        <tr>
+                            <th>Sr</th>
+                            <th scope="row">Product Name</th>
+                            <th>Quantity</th>
+                            <th colspan="2">Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.data
+                          .map(
+                            (order) => `
+                            <tr>
+                                <td>${count++}</td>
+                                <td>${order.product_name}</td>
+                                <td style="text-align:center">${order.quantity}</td>
+                                <td style="text-align:right"> ₹${order.unit_price}</td>
+                                <td> &nbsp; &nbsp;</td>
+                                <td> ₹${order.product_total}</td>
+                            </tr>`
+                          )
+                          .join("")}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="6" style="text-align:right;padding-right: 7vh;" id="Grand Total">
+                                SubTotal : ₹${calculateMainTotal(data.data)} <br/>
+                                SGST(@2.5%) :  ₹${taxCalculate(data.data)} <br/>
+                                CGST(@2.5%) :  ₹${taxCalculate(data.data)}<br/>
+                                <strong>Grand Total : </strong> ₹${calculateGrandTotal(data.data)}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="6" id="placeOrderContainer" ${data.data[0].areaName == "Delivery" ? 'style="display: none;"' : ""}>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <button id="placeOrderButton" type="button" class="btn btn-danger shadow m-4 p-3" style="border-radius: 15px; width: 40vh;">
+                                            Place Order <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    `;
+
+          orderDetailsContainer.innerHTML += orderItemsTableHtml;
+          document
+            .getElementById("placeOrderButton")
+            .addEventListener("click", function () {
+              // Log the required information when the confirm button is clicked
+              console.log("API URL:", url);
+              console.log("Location ID:", firstOrder.loc_id); // Assuming loc_id is available
+              console.log("Restaurant ID:", firstOrder.restaurant_id); // Assuming restaurant_id is available
+              console.log("Address:", data); // Log the address data directly
+
+              // Call your custom function to handle Razorpay payment
+              handleRazorpayPayment(data);
+            });
+        } else {
+          orderDetailsContainer.innerHTML =
+            '<p class="text-muted">No orders found.</p>';
+        }
+      }
+
+      async function handleRazorpayPayment(data) {
+        const grandTotal = calculateGrandTotal(data.data);
+        const options = {
+          key: "rzp_test_tum0cwIoU0JwTK",
+          amount: grandTotal * 100,
+          currency: "INR",
+          name: "Extraaazpos.com",
+          description: "RazorPay",
+          image:
+            "https://extraaazpos.com/wp-content/uploads/2023/11/cropped-Extraswaadpos-logo-e1699955802191.webp",
+          prefill: {
+            name: data.data[0].areaName,
+            email: data.data[0].table_id,
+          },
+          theme: {
+            color: "#FF7529",
+          },
+          handler: async function (response) {
+            console.log("Payment Id :", response);
+            if (response.razorpay_payment_id) {
+              storeToOrderKOtPayments(response, data, grandTotal);
+            } else {
+              handlePaymentFailure(response);
+            }
+          },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+      }
+
+      async function storeToOrderKOtPayments(response, data, grandTotal) {
+        console.log("Store Data", data);
+
+        var tableId = data.data[0].table_id;
+        var restaurantId = data.data[0].restaurant_id;
+        var loc_id = data.data[0].loc_id;
+        var areaName = data.data[0].areaName;
+        var bill_amount = grandTotal;
+        const token = sessionStorage.getItem("token");
+        const selectedAddressId = sessionStorage.getItem("selectedAddressId");
+        const razorPayId = response.razorpay_payment_id;
+
+        if (token == null) {
+          window.location.href = "index.html";
+        }
+
+        const apiUrl = url + `/api/storeToKot`;
+
+        const requestBody = {
+          table_id: tableId,
+          location_id: loc_id,
+          restaurant_id: restaurantId,
+          sectionName: tableId,
+          areaName: areaName,
+          kitchenInstruction: null,
+          billNote: null,
+          internal_note: null,
+          bill_amount: grandTotal,
+          selectedAddressId: selectedAddressId,
+          razorPayId: razorPayId,
+        };
+
+        fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify(requestBody),
+        })
+          .then((response) => response.json())
+          .then((data2) => {
+            console.log("Main data : ", data2);
+            if (data2.success) {
+              sessionStorage.setItem("cart", null);
+              window.location.href =
+                "success-page.html?tableId=" +
+                JSON.stringify(data.data[0].table_id);
+            } else {
+              window.alert("Problem is processing the Order!");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching order details:", error);
+          });
+      }
+
+      function taxCalculate(data) {
+        const grandTotal = data.reduce(
+          (total, order) => total + parseFloat(order.product_total) * 0.025,
+          0
+        );
+        return grandTotal.toFixed(3);
+      }
+
+      function calculateMainTotal(data) {
+        const grandTotal = data.reduce(
+          (total, order) => total + parseFloat(order.product_total),
+          0
+        );
+        return grandTotal.toFixed(3);
+      }
+
+      function calculateGrandTotal(data) {
+        const grandTotal = calculateMainTotal(data);
+        const sgst = taxCalculate(data);
+        const cgst = sgst;
+        return (
+          parseFloat(grandTotal) +
+          parseFloat(sgst) +
+          parseFloat(cgst)
+        ).toFixed(3);
+      }
+    </script> -->
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Your Page Title</title>
+        <!-- Bootstrap CSS (or other styles) -->
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <!-- Include Razorpay script -->
+      </head>
+      <body>
+        <div id="orderDetails" class="container mt-5">
+          <!-- Order details will be dynamically inserted here -->
+        </div>
+
+        <!-- <script>
+          // Your JavaScript code goes here
+
+          var url = "";
+          var restaurantId = "";
+
+          document.addEventListener("DOMContentLoaded", function () {
+            fetch("/env.json")
+              .then((response) => response.json())
+              .then((data) => {
+                url = data.URL;
+                const storedRestaurantId = localStorage.getItem("urlSegment");
+
+                if (storedRestaurantId) {
+                  restaurantId = storedRestaurantId;
+                } else {
+                  console.error("Restaurant ID not found in localStorage");
+                  restaurantId = "EPOS737290"; // Default or hardcoded value
+                }
+
+                console.log("API URL:", url);
+                console.log("Restaurant ID:", restaurantId);
+
+                const tableId = sessionStorage.getItem("tableId");
+
+                if (tableId) {
+                  console.log("Fetched Table ID:", tableId);
+                  fetchOrderDetails(tableId); // Call fetchOrderDetails if tableId is found
+                } else {
+                  console.log("No Table ID found in sessionStorage.");
+                }
+              })
+              .catch((error) =>
+                console.error("Error fetching env.json:", error)
+              );
+          });
+
+          function fetchOrderDetails(tableId) {
+            const token = sessionStorage.getItem("token");
+
+            if (token == null) {
+              window.location.href = "login.html";
+              return; // Stop executing further code
+            }
+            const apiUrl = url + `/api/getCartItems?tableId=${tableId}`;
+
+            console.log("Fetching order details for Table ID:", tableId); // Debug log
+
+            fetch(apiUrl, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log("Order details response:", data); // Debug log
+                updateOrderDetails(data);
+              })
+              .catch((error) => {
+                console.error("Error fetching order details:", error);
+              });
+          }
+
+          function updateOrderDetails(data) {
+            const orderDetailsContainer =
+              document.getElementById("orderDetails");
+            orderDetailsContainer.innerHTML = "";
+            console.log(data);
+
+            if (data.data.length > 0) {
+              const firstOrder = data.data[0];
+              const sharedOrderDetailsHtml = `
+                <div class="card-body p-0">
+                    <div class="shared-order-details mb-4">
+                        <h2 class="mb-3" style="color:black;text-align:center;font-weight:800;">Bill Details</h2>
+                        <table class="table table-fixed mb-0">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Order Id:</strong></td>
+                                    <td>${firstOrder.table_id}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Order Type:</strong></td>
+                                    <td>${firstOrder.areaName}</td>
+                                </tr>
+                                ${
+                                  firstOrder.areaName == "Dine-In"
+                                    ? `
+                                <tr>
+                                    <td><strong>Cover Count:</strong></td>
+                                    <td>${firstOrder.cover_count}</td>
+                                </tr>`
+                                    : ""
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>`;
+
+              orderDetailsContainer.innerHTML += sharedOrderDetailsHtml;
+
+              let count = 1;
+              const orderItemsTableHtml = `
+                <div class="card-body pt-0">
+                    <div class="table-responsive">
+                        <table class="table table-fixed mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Sr</th>
+                                    <th scope="row">Product Name</th>
+                                    <th>Quantity</th>
+                                    <th colspan="2">Unit Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.data
+                                  .map(
+                                    (order) => `
+                                <tr>
+                                    <td>${count++}</td>
+                                    <td>${order.product_name}</td>
+                                    <td style="text-align:center">${order.quantity}</td>
+                                    <td style="text-align:right">₹${order.unit_price}</td>
+                                    <td>&nbsp;&nbsp;</td>
+                                    <td>₹${order.product_total}</td>
+                                </tr>`
+                                  )
+                                  .join("")}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="6" style="text-align:right;padding-right:7vh;" id="Grand Total">
+                                        SubTotal: ₹${calculateMainTotal(data.data)}<br/>
+                                        SGST(@2.5%): ₹${taxCalculate(data.data)}<br/>
+                                        CGST(@2.5%): ₹${taxCalculate(data.data)}<br/>
+                                        <strong>Grand Total: </strong> ₹${calculateGrandTotal(data.data)}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6" id="placeOrderContainer" ${data.data[0].areaName == "Delivery" ? 'style="display:none;"' : ""}>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <button id="placeOrderButton" type="button" class="btn btn-danger shadow m-4 p-3" style="border-radius:15px;width:40vh;">
+                                                    Place Order <i class="bi bi-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>`;
+
+              orderDetailsContainer.innerHTML += orderItemsTableHtml;
+
+              document
+                .getElementById("placeOrderButton")
+                .addEventListener("click", function () {
+                  handleRazorpayPayment(data);
+                });
+            } else {
+              orderDetailsContainer.innerHTML =
+                '<p class="text-muted">No orders found.</p>';
+            }
+          }
+
+          function taxCalculate(data) {
+            const grandTotal = data.reduce(
+              (total, order) => total + parseFloat(order.product_total) * 0.025,
+              0
+            );
+            return grandTotal.toFixed(3);
+          }
+
+          function calculateMainTotal(data) {
+            const grandTotal = data.reduce(
+              (total, order) => total + parseFloat(order.product_total),
+              0
+            );
+            return grandTotal.toFixed(3);
+          }
+
+          function calculateGrandTotal(data) {
+            const grandTotal = calculateMainTotal(data);
+            const sgst = taxCalculate(data);
+            const cgst = sgst;
+            return (
+              parseFloat(grandTotal) +
+              parseFloat(sgst) +
+              parseFloat(cgst)
+            ).toFixed(3);
+          }
+        </script> -->
+        <!-- <script>
+          // Your JavaScript code goes here
+
+          let url = "";
+          let restaurantId = "";
+
+          document.addEventListener("DOMContentLoaded", function () {
+            fetch("/env.json")
+              .then((response) => response.json())
+              .then((data) => {
+                url = data.URL;
+                const storedRestaurantId = localStorage.getItem("urlSegment");
+
+                restaurantId = storedRestaurantId || "EPOS737290"; // Default or hardcoded value
+
+                console.log("API URL:", url);
+                console.log("Restaurant ID:", restaurantId);
+                const userId = localStorage.getItem("userId");
+
+                if (userId) {
+                  console.log("Fetched User ID:", userId);
+                  // Now use the userId in your logic, e.g., adding it to the orderDetails
+                } else {
+                  console.log("No User ID found.");
+                  // Handle the case where the userId is not found
+                }
+                const tableId = sessionStorage.getItem("tableId");
+
+                if (tableId) {
+                  console.log("Fetched Table ID:", tableId);
+                  fetchOrderDetails(tableId); // Call fetchOrderDetails if tableId is found
+                } else {
+                  console.log("No Table ID found in sessionStorage.");
+                }
+              })
+              .catch((error) => {
+                console.error("Error fetching env.json:", error);
+                alert("Failed to load configuration. Please try again later."); // User feedback
+              });
+          });
+
+          function fetchOrderDetails(tableId) {
+            const token = sessionStorage.getItem("token");
+
+            if (!token) {
+              window.location.href = "login.html";
+              return; // Stop executing further code
+            }
+
+            const apiUrl = `${url}/api/getCartItems?tableId=${tableId}`;
+
+            console.log("Fetching order details for Table ID:", tableId); // Debug log
+
+            fetch(apiUrl, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log("Order details response:", data); // Debug log
+                updateOrderDetails(data);
+              })
+              .catch((error) => {
+                console.error("Error fetching order details:", error);
+                alert("Failed to fetch order details. Please try again."); // User feedback
+              });
+          }
+
+          function updateOrderDetails(data) {
+            const orderDetailsContainer =
+              document.getElementById("orderDetails");
+            orderDetailsContainer.innerHTML = "";
+            console.log(data);
+
+            if (data.data.length > 0) {
+              const firstOrder = data.data[0];
+              const sharedOrderDetailsHtml = `
+                <div class="card-body p-0">
+                  <div class="shared-order-details mb-4">
+                    <h2 class="mb-3" style="color:black;text-align:center;font-weight:800;">Bill Details</h2>
+                    <table class="table table-fixed mb-0">
+                      <tbody>
+                        <tr>
+                          <td><strong>Order Id:</strong></td>
+                          <td>${firstOrder.table_id}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Order Type:</strong></td>
+                          <td>${firstOrder.areaName}</td>
+                        </tr>
+                        ${
+                          firstOrder.areaName == "Dine-In"
+                            ? `
+                          <tr>
+                            <td><strong>Cover Count:</strong></td>
+                            <td>${firstOrder.cover_count}</td>
+                          </tr>`
+                            : ""
+                        }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>`;
+
+              orderDetailsContainer.innerHTML += sharedOrderDetailsHtml;
+
+              let count = 1;
+              const orderItemsTableHtml = `
+                <div class="card-body pt-0">
+                  <div class="table-responsive">
+                    <table class="table table-fixed mb-0">
+                      <thead>
+                        <tr>
+                          <th>Sr</th>
+                          <th scope="row">Product Name</th>
+                          <th>Quantity</th>
+                          <th colspan="2">Unit Price</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${data.data
+                          .map(
+                            (order) => `
+                          <tr>
+                            <td>${count++}</td>
+                            <td>${order.product_name}</td>
+                            <td style="text-align:center">${order.quantity}</td>
+                            <td style="text-align:right">₹${order.unit_price}</td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>₹${order.product_total}</td>
+                          </tr>`
+                          )
+                          .join("")}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="6" style="text-align:right;padding-right:7vh;" id="Grand Total">
+                            SubTotal: ₹${calculateMainTotal(data.data)}<br/>
+                            SGST(@2.5%): ₹${calculateTax(data.data)}<br/>
+                            CGST(@2.5%): ₹${calculateTax(data.data)}<br/>
+                            <strong>Grand Total: </strong> ₹${calculateGrandTotal(data.data)}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th colspan="6" id="placeOrderContainer" ${firstOrder.areaName == "Delivery" ? 'style="display:none;"' : ""}>
+                            <div class="row">
+                              <div class="col text-center">
+                                <button id="placeOrderButton" type="button" class="btn btn-danger shadow m-4 p-3" style="border-radius:15px;width:40vh;">
+                                  Place Order <i class="bi bi-arrow-right"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>`;
+
+              orderDetailsContainer.innerHTML += orderItemsTableHtml;
+
+              addPlaceOrderButtonListener(data);
+            } else {
+              orderDetailsContainer.innerHTML =
+                '<p class="text-muted">No orders found.</p>';
+            }
+          }
+
+          function addPlaceOrderButtonListener(data) {
+            document
+              .getElementById("placeOrderButton")
+              .addEventListener("click", function () {
+                handleRazorpayPayment(data);
+              });
+          }
+
+          function calculateTax(data) {
+            return data
+              .reduce(
+                (total, order) =>
+                  total + parseFloat(order.product_total) * 0.025,
+                0
+              )
+              .toFixed(3);
+          }
+
+          function calculateMainTotal(data) {
+            return data
+              .reduce(
+                (total, order) => total + parseFloat(order.product_total),
+                0
+              )
+              .toFixed(3);
+          }
+
+          function calculateGrandTotal(data) {
+            const grandTotal = calculateMainTotal(data);
+            const tax = calculateTax(data);
+            return (parseFloat(grandTotal) + parseFloat(tax) * 2).toFixed(3);
+          }
+        </script> -->
+        <!-- <script>
+          // Your existing JavaScript code goes here
+          let url = "";
+          let restaurantId = "";
+
+          document.addEventListener("DOMContentLoaded", function () {
+            fetch("/env.json")
+              .then((response) => response.json())
+              .then((data) => {
+                url = data.URL;
+                const storedRestaurantId = localStorage.getItem("urlSegment");
+
+                restaurantId = storedRestaurantId || "EPOS737290"; // Default or hardcoded value
+
+                console.log("API URL:", url);
+                console.log("Restaurant ID:", restaurantId);
+                const userId = localStorage.getItem("userId");
+
+                if (userId) {
+                  console.log("Fetched User ID:", userId);
+                  // Now use the userId in your logic, e.g., adding it to the orderDetails
+                } else {
+                  console.log("No User ID found.");
+                  // Handle the case where the userId is not found
+                }
+                const tableId = sessionStorage.getItem("tableId");
+
+                if (tableId) {
+                  console.log("Fetched Table ID:", tableId);
+                  fetchOrderDetails(tableId); // Call fetchOrderDetails if tableId is found
+                } else {
+                  console.log("No Table ID found in sessionStorage.");
+                }
+              })
+              .catch((error) => {
+                console.error("Error fetching env.json:", error);
+                alert("Failed to load configuration. Please try again later."); // User feedback
+              });
+          });
+
+          function fetchOrderDetails(tableId) {
+            const token = sessionStorage.getItem("token");
+
+            if (!token) {
+              window.location.href = "login.html";
+              return; // Stop executing further code
+            }
+
+            const apiUrl = `${url}/api/getCartItems?tableId=${tableId}`;
+
+            console.log("Fetching order details for Table ID:", tableId); // Debug log
+
+            fetch(apiUrl, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log("Order details response:", data); // Debug log
+                updateOrderDetails(data);
+              })
+              .catch((error) => {
+                console.error("Error fetching order details:", error);
+                alert("Failed to fetch order details. Please try again."); // User feedback
+              });
+          }
+
+          function updateOrderDetails(data) {
+            const orderDetailsContainer =
+              document.getElementById("orderDetails");
+            const cardBody = orderDetailsContainer.querySelector(".card-body");
+            cardBody.innerHTML = ""; // Clear previous contents
+
+            console.log(data);
+
+            if (data.data.length > 0) {
+              const firstOrder = data.data[0];
+              const sharedOrderDetailsHtml = `
+                      <h3 style="color:black;text-align:center;font-weight:800;">Bill Details</h3>
+                      <table class="table table-fixed mb-0">
+                          <tbody>
+                              <tr>
+                                  <td><strong>Order Id:</strong></td>
+                                  <td>${firstOrder.table_id}</td>
+                              </tr>
+                              <tr>
+                                  <td><strong>Order Type:</strong></td>
+                                  <td>${firstOrder.areaName}</td>
+                              </tr>
+                              ${
+                                firstOrder.areaName == "Dine-In"
+                                  ? `<tr>
+                                          <td><strong>Cover Count:</strong></td>
+                                          <td>${firstOrder.cover_count}</td>
+                                      </tr>`
+                                  : ""
+                              }
+                          </tbody>
+                      </table>`;
+
+              cardBody.innerHTML += sharedOrderDetailsHtml;
+
+              let count = 1;
+              const orderItemsTableHtml = `
+                      <div class="table-responsive">
+                          <table class="table table-fixed mb-0">
+                              <thead>
+                                  <tr>
+                                      <th>Sr</th>
+                                      <th scope="row">Product Name</th>
+                                      <th>Quantity</th>
+                                      <th>Unit Price</th>
+                                      <th>Total</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  ${data.data
+                                    .map(
+                                      (order) => `
+                                          <tr>
+                                              <td>${count++}</td>
+                                              <td>${order.product_name}</td>
+                                              <td style="text-align:center">${order.quantity}</td>
+                                              <td style="text-align:right">₹${order.unit_price}</td>
+                                              <td style="text-align:right">₹${order.product_total}</td>
+                                          </tr>`
+                                    )
+                                    .join("")}
+                              </tbody>
+                              <tfoot>
+                                  <tr>
+                                      <th colspan="6" style="text-align:right;padding-right:7vh;">
+                                          SubTotal: ₹${calculateMainTotal(data.data)}<br/>
+                                          SGST(@2.5%): ₹${calculateTax(data.data)}<br/>
+                                          CGST(@2.5%): ₹${calculateTax(data.data)}<br/>
+                                          <strong>Grand Total: </strong> ₹${calculateGrandTotal(data.data)}
+                                      </th>
+                                  </tr>
+                              </tfoot>
+                          </table>
+                      </div>`;
+
+              cardBody.innerHTML += orderItemsTableHtml;
+            } else {
+              cardBody.innerHTML = '<p class="text-muted">No orders found.</p>';
+            }
+          }
+
+          function calculateTax(data) {
+            return data
+              .reduce(
+                (total, order) =>
+                  total + parseFloat(order.product_total) * 0.025,
+                0
+              )
+              .toFixed(3);
+          }
+
+          function calculateMainTotal(data) {
+            return data
+              .reduce(
+                (total, order) => total + parseFloat(order.product_total),
+                0
+              )
+              .toFixed(3);
+          }
+
+          function calculateGrandTotal(data) {
+            const grandTotal = calculateMainTotal(data);
+            const tax = calculateTax(data);
+            return (parseFloat(grandTotal) + parseFloat(tax) * 2).toFixed(3);
+          }
+        </script> -->
+
+        <!-- <script>
+          // Your existing JavaScript code goes here
+          let url = "";
+          let restaurantId = "";
+
+          // Load environment variables and set up basic information
+          document.addEventListener("DOMContentLoaded", function () {
+            fetch("/env.json")
+              .then((response) => response.json())
+              .then((data) => {
+                url = data.URL;
+                const storedRestaurantId = localStorage.getItem("urlSegment");
+                restaurantId = storedRestaurantId || "EPOS737290"; // Default or hardcoded value
+
+                console.log("API URL:", url);
+                console.log("Restaurant ID:", restaurantId);
+                const userId = localStorage.getItem("userId");
+
+                if (userId) {
+                  console.log("Fetched User ID:", userId);
+                  // Now use the userId in your logic, e.g., adding it to the orderDetails
+                } else {
+                  console.log("No User ID found.");
+                  // Handle the case where the userId is not found
+                }
+
+                const tableId = sessionStorage.getItem("tableId");
+
+                if (tableId) {
+                  console.log("Fetched Table ID:", tableId);
+                  fetchOrderDetails(tableId); // Call fetchOrderDetails if tableId is found
+                } else {
+                  console.log("No Table ID found in sessionStorage.");
+                }
+
+                var areaName = sessionStorage.getItem("areaName");
+
+                if (areaName == "TakeAway") {
+                  addressDiv.innerHTML = "";
+                }
+
+                var customerId = sessionStorage.getItem("customerId");
+
+                // Fetch cart items from sessionStorage for displaying in details page
+                const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+                renderCartItems(cart);
+              })
+              .catch((error) => {
+                console.error("Error fetching env.json:", error);
+                alert("Failed to load configuration. Please try again later."); // User feedback
+              });
+          });
+
+          function fetchOrderDetails(tableId) {
+            const token = sessionStorage.getItem("token");
+
+            if (!token) {
+              window.location.href = "login.html";
+              return; // Stop executing further code
+            }
+
+            const apiUrl = `${url}/api/getCartItems?tableId=${tableId}`;
+
+            console.log("Fetching order details for Table ID:", tableId); // Debug log
+
+            fetch(apiUrl, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log("Order details response:", data); // Debug log
+                updateOrderDetails(data);
+              })
+              .catch((error) => {
+                console.error("Error fetching order details:", error);
+                alert("Failed to fetch order details. Please try again."); // User feedback
+              });
+          }
+
+          function renderCartItems(cart) {
+            const cartItemsContainer = document.getElementById(
+              "cart-items-container"
+            );
+            const totalPriceElement = document.getElementById("total-price");
+            const payNowButtonSpan = document.querySelector(
+              ".item-subtotal span"
+            );
+
+            cartItemsContainer.innerHTML = "";
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+              cartItemsContainer.innerHTML = `
+                    <h3 class="text-center">Your cart is empty</h3>
+                    <div class="empty-cart-img-container">
+                      <img src="./img/cartimge.png" class="empty-cart-img" />
+                    </div>`;
+              totalPriceElement.textContent = "0.00";
+              payNowButtonSpan.textContent = `Pay ₹0.00`;
+              return;
+            }
+
+            cart.forEach((item, index) => {
+              const itemDiv = document.createElement("div");
+              itemDiv.classList.add("cart-item");
+
+              itemDiv.innerHTML = `
+                    <div class="p-3 border-bottom gold-members">
+                      <span class="count-number float-right">
+                        <button type="button" class="btn-sm left btn-dec btn btn-outline-secondary" data-index="${index}">-</button>
+                        <input class="count-number-input" type="text" readonly value="${item.quantity}" />
+                        <button type="button" class="btn-sm right btn-inc btn btn-outline-secondary" data-index="${index}">+</button>
+                      </span>
+                      <div class="media">
+                        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
+                        <div class="media-body">
+                          <h6 class="mb-1">${item.name}</h6>
+                          <p class="text-muted mb-0">₹<span class="item-price">${parseFloat(item.price || item.item_default_sell_price || 0).toFixed(2)}</span></p>
+                        </div>
+                      </div>
+                    </div>`;
+
+              cartItemsContainer.appendChild(itemDiv);
+              totalPrice += item.price * item.quantity;
+            });
+
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+            payNowButtonSpan.textContent = `Pay ₹${totalPrice.toFixed(2)}`;
+          }
+
+          function updateOrderDetails(data) {
+            const orderDetailsContainer =
+              document.getElementById("orderDetails");
+            const cardBody = orderDetailsContainer.querySelector(".card-body");
+            cardBody.innerHTML = ""; // Clear previous contents
+
+            console.log(data);
+
+            if (data.data.length > 0) {
+              const firstOrder = data.data[0];
+              const sharedOrderDetailsHtml = `
+                      <h3 style="color:black;text-align:center;font-weight:800;">Bill Details</h3>
+                      <table class="table table-fixed mb-0">
+                          <tbody>
+                              <tr>
+                                  <td><strong>Order Id:</strong></td>
+                                  <td>${firstOrder.table_id}</td>
+                              </tr>
+                              <tr>
+                                  <td><strong>Order Type:</strong></td>
+                                  <td>${firstOrder.areaName}</td>
+                              </tr>
+                              ${
+                                firstOrder.areaName == "Dine-In"
+                                  ? `<tr>
+                                              <td><strong>Cover Count:</strong></td>
+                                              <td>${firstOrder.cover_count}</td>
+                                          </tr>`
+                                  : ""
+                              }
+                          </tbody>
+                      </table>`;
+
+              cardBody.innerHTML += sharedOrderDetailsHtml;
+
+              let count = 1;
+              const orderItemsTableHtml = `
+                      <div class="table-responsive">
+                          <table class="table table-fixed mb-0">
+                              <thead>
+                                  <tr>
+                                      <th>Sr</th>
+                                      <th scope="row">Product Name</th>
+                                      <th>Quantity</th>
+                                      <th>Unit Price</th>
+                                      <th>Total</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  ${data.data
+                                    .map(
+                                      (order) => `
+                                              <tr>
+                                                  <td>${count++}</td>
+                                                  <td>${order.product_name}</td>
+                                                  <td style="text-align:center">${order.quantity}</td>
+                                                  <td style="text-align:right">₹${order.unit_price}</td>
+                                                  <td style="text-align:right">₹${order.product_total}</td>
+                                              </tr>`
+                                    )
+                                    .join("")}
+                              </tbody>
+                              <tfoot>
+                                  <tr>
+                                      <th colspan="6" style="text-align:right;padding-right:7vh;">
+                                          SubTotal: ₹${calculateMainTotal(data.data)}<br/>
+                                          SGST(@2.5%): ₹${calculateTax(data.data)}<br/>
+                                          CGST(@2.5%): ₹${calculateTax(data.data)}<br/>
+                                          <strong>Grand Total: </strong> ₹${calculateGrandTotal(data.data)}
+                                      </th>
+                                  </tr>
+                              </tfoot>
+                          </table>
+                      </div>`;
+
+              cardBody.innerHTML += orderItemsTableHtml;
+            } else {
+              cardBody.innerHTML = '<p class="text-muted">No orders found.</p>';
+            }
+          }
+
+          function calculateTax(data) {
+            return data
+              .reduce(
+                (total, order) =>
+                  total + parseFloat(order.product_total) * 0.025,
+                0
+              )
+              .toFixed(3);
+          }
+
+          function calculateMainTotal(data) {
+            return data
+              .reduce(
+                (total, order) => total + parseFloat(order.product_total),
+                0
+              )
+              .toFixed(3);
+          }
+
+          function calculateGrandTotal(data) {
+            const grandTotal = calculateMainTotal(data);
+            const tax = calculateTax(data);
+            return (parseFloat(grandTotal) + parseFloat(tax) * 2).toFixed(3);
+          }
+        </script> -->
+        <script>
+          fetch("/env.json")
+            .then((response) => response.json())
+            .then((data) => {
+              const url = data.URL;
+              // const locationId = data.LOCATION;
+              // const restaurant_id = data.RESTAURANT_ID;
+              const restaurant_id = localStorage.getItem("urlSegment");
+              const locationId = sessionStorage.getItem("selectedLocationId");
+
+              console.log("API URL:", url);
+              console.log("Location ID:", locationId);
+              console.log("Restaurant ID:", restaurant_id);
+              // console.log('API Endpoint:', apiEndpoint);
+
+              var customerNo = sessionStorage.getItem("customerNumber");
+              var custNo = document.getElementById("custNo");
+              custNo.textContent = customerNo;
+
+              function decreaseQuantity() {
+                var quantityInput = document.getElementById("quantity");
+                var currentQuantity = parseInt(quantityInput.value, 10);
+                if (currentQuantity > 1) {
+                  quantityInput.value = currentQuantity - 1;
+                }
+              }
+
+              function increaseQuantity() {
+                var quantityInput = document.getElementById("quantity");
+                var currentQuantity = parseInt(quantityInput.value, 10);
+                quantityInput.value = currentQuantity + 1;
+              }
+
+              function resetModal() {
+                $("#addAddressForm")[0].reset();
+                $("#addAddressModalLabel").text("Add ");
+                $("#submitAddress").html(
+                  `<p id="addAddressBtn">Add Address &nbsp; <i class="bi bi - plus"></i></p>`
+                );
+                $("#addressId").val("");
+              }
+
+              $(document).ready(function () {
+                var addressDiv = document.getElementById("addressDiv");
+                var areaName = sessionStorage.getItem("areaName");
+
+                if (areaName == "TakeAway") {
+                  addressDiv.innerHTML = "";
+                }
+
+                var customerId = sessionStorage.getItem("customerId");
+
+                $("#addAddressModal").on("hidden.bs.modal", function () {
+                  resetModal();
+                });
+
+                fetchCustomerAddress(customerId);
+
+                $("#addAddressForm").submit(function (event) {
+                  event.preventDefault();
+
+                  // Collect data from the form
+                  const newAddressData = {
+                    customer_id: customerId,
+                    type: "Home", // Need to Set the type from the UI in future
+                    id: $("#addressId").val(),
+                    address: $("#newAddress").val(),
+                    city: $("#newCity").val(),
+                    state: $("#newState").val(),
+                    country: $("#newCountry").val(),
+                    pincode: $("#newPincode").val(),
+                    restaurant_id: restaurant_id,
+                  };
+
+                  if (newAddressData.id) {
+                    editAddressOnServer(newAddressData);
+                  } else {
+                    addAddressOnServer(newAddressData);
+                  }
+
+                  $("#addAddressModal").modal("hide");
+                });
+
+                $("#addressContainer").on(
+                  "click",
+                  ".edit-address",
+                  function () {
+                    const addressId = $(this).data("id");
+                    editAddress(addressId);
+                  }
+                );
+
+                $("#addressContainer").on(
+                  "click",
+                  ".edit-address",
+                  function () {
+                    const addressId = $(this).data("id");
+                    editAddress(addressId);
+                  }
+                );
+
+                $("#addressContainer").on(
+                  "click",
+                  ".delete-address",
+                  function () {
+                    const addressId = $(this).data("id");
+                    deleteAddress(addressId);
+                  }
+                );
+
+                async function editAddress(addressId) {
+                  console.log("addressId :", addressId);
+
+                  const existingAddressDetails =
+                    await getAddressDetailsById(addressId);
+                  console.log("Existing Address:", existingAddressDetails);
+
+                  // Update the modal title
+                  $("#addAddressModalLabel").text("Edit Address");
+                  // Populate the form fields with existing address details
+                  $("#addressId").val(existingAddressDetails.id);
+                  $("#newAddress").val(existingAddressDetails.address);
+                  $("#newCity").val(existingAddressDetails.city);
+                  $("#newState").val(existingAddressDetails.state);
+                  // $('#newCountry').val(existingAddressDetails.country);
+                  $("#newPincode").val(existingAddressDetails.pincode);
+                  $("#submitAddress").html(
+                    `<p id="editAddressBtn" >Edit Address &nbsp;<i class="bi bi-pencil"></i> </p>`
+                  );
+
+                  $("#addAddressModal").modal("show");
+                }
+
+                async function deleteAddress(addressId) {
+                  console.log("addressId :", addressId);
+
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  try {
+                    const response = await fetch(
+                      url + `/api/customerAddress/${addressId}`,
+                      {
+                        method: "DELETE",
+                        headers: {
+                          Authorization: "Bearer " + token,
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+
+                    if (response.ok) {
+                      const data = await response.json();
+                      console.log("Address deleted successfully:", data);
+
+                      updateUIAfterDeletion(addressId);
+                    } else {
+                      const errorData = await response.json();
+                      console.error("Error deleting address:", errorData);
+                      // alert('Error deleting address. Please try again.');
+                    }
+                  } catch (error) {
+                    console.error("Error deleting address:", error);
+                    // alert('Error deleting address. Please try again.');
+                  }
+                }
+
+                function updateUIAfterDeletion(addressId) {
+                  $(`[data-id="${addressId}"]`).closest(".row").remove();
+                  window.location.reload();
+                  // alert('Address deleted successfully.');
+                }
+
+                async function editAddressOnServer(newAddress) {
+                  console.log("Editaddress : ", newAddress);
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  $.ajax({
+                    url: url + `/api/customerAddress/` + newAddress.id,
+                    type: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer " + token,
+                    },
+                    data: JSON.stringify(newAddress),
+                    success: function (data) {
+                      console.log("Address Edited successfully : ", data);
+                      window.location.reload();
+                    },
+                    error: function (error) {
+                      console.error("Error editing address:", error);
+                    },
+                  });
+                }
+
+                async function addAddressOnServer(newAddress) {
+                  // alert(url);
+                  console.log("Newaddress : ", newAddress);
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  $.ajax({
+                    url: url + `/api/customerAddress`,
+                    type: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer " + token,
+                    },
+                    data: JSON.stringify(newAddress),
+                    success: function (data) {
+                      console.log("Address Added successfully : ", data);
+                      window.location.reload();
+                    },
+                    error: function (error) {
+                      console.error("Error fetching address:", error);
+                    },
+                  });
+                }
+
+                async function getAddressDetailsById(addressId) {
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  try {
+                    const response = await fetch(
+                      url + `/api/customerAddress/${addressId}`,
+                      {
+                        method: "GET",
+                        headers: {
+                          Authorization: "Bearer " + token,
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+
+                    const data = await response.json();
+                    console.log("Individual Address:", data);
+                    // tableId = data;
+
+                    return data.data;
+                  } catch (error) {
+                    console.error("Error fetching TableId:", error);
+                    throw error;
+                  }
+                }
+              });
+
+              function fetchCustomerAddress(customerId) {
+                const token = sessionStorage.getItem("token");
+
+                if (token == null) {
+                  window.location.href = "index.html";
+                }
+                $.ajax({
+                  url: url + `/api/getCustomerAddresses/${customerId}`,
+                  type: "GET",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token,
+                  },
+                  success: function (data) {
+                    console.log("Address :", data);
+                    const addresses = data.data;
+
+                    $("#addressContainer").empty();
+
+                    addresses.forEach((address) => {
+                      appendAddressToContainer(address);
+                    });
+                  },
+                  error: function (error) {
+                    console.error("Error fetching address:", error);
+                  },
+                });
+              }
+
+              function appendAddressToContainer(address) {
+                const addressHtml = `
+                <div class="mt-4">
+                    <div class="address-item border p-3 mb-3" data-id="${address.id}">
+                        <p class="mb-0">
+                            <span class="fw-bold">${address.address}</span>, ${address.city}, ${address.state}, ${address.country} - ${address.pincode}
+                        </p>
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-sm edit-address" data-id="${address.id}">
+                                <i class="fas fa-pencil-alt"></i> Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm delete-address" data-id="${address.id}">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            `;
+                $("#addressContainer").append(addressHtml);
+                $(`[data-id="${address.id}"]`).on("click", function () {
+                  // Remove the 'selected-address' class from all address items
+                  sessionStorage.setItem("selectedAddressId", null);
+                  $(".address-item").removeClass("selected-address");
+
+                  // Add the 'selected-address' class to the clicked address item
+                  $(this).addClass("selected-address");
+                  $("#placeOrderContainer").show();
+
+                  // You can add additional logic here to handle the selected address
+                  // For example, you can store the selected address ID in a variable for further use
+                  const selectedAddressId = $(this).data("id");
+                  sessionStorage.setItem(
+                    "selectedAddressId",
+                    selectedAddressId
+                  );
+                  console.log("Selected Address ID:", selectedAddressId);
+                });
+              }
+            })
+            .catch((error) => console.error("Error fetching env.json:", error));
+        </script>
+        <script src="../../../js/fetchCartDetails.js"></script>
+        <!-- <script>
+          fetch("/env.json")
+            .then((response) => response.json())
+            .then((data) => {
+              const url = data.URL;
+              // const locationId = data.LOCATION;
+              // const restaurant_id = data.RESTAURANT_ID;
+              const restaurant_id = localStorage.getItem("urlSegment");
+              const locationId = sessionStorage.getItem("selectedLocationId");
+
+              console.log("API URL:", url);
+              console.log("Location ID:", locationId);
+              console.log("Restaurant ID:", restaurant_id);
+              // console.log('API Endpoint:', apiEndpoint);
+
+              var customerNo = sessionStorage.getItem("customerNumber");
+              var custNo = document.getElementById("custNo");
+              custNo.textContent = customerNo;
+
+              function decreaseQuantity() {
+                var quantityInput = document.getElementById("quantity");
+                var currentQuantity = parseInt(quantityInput.value, 10);
+                if (currentQuantity > 1) {
+                  quantityInput.value = currentQuantity - 1;
+                }
+              }
+
+              function increaseQuantity() {
+                var quantityInput = document.getElementById("quantity");
+                var currentQuantity = parseInt(quantityInput.value, 10);
+                quantityInput.value = currentQuantity + 1;
+              }
+
+              function resetModal() {
+                $("#addAddressForm")[0].reset();
+                $("#addAddressModalLabel").text("Add ");
+                $("#submitAddress").html(
+                  `<p id="addAddressBtn">Add Address &nbsp; <i class="bi bi - plus"></i></p>`
+                );
+                $("#addressId").val("");
+              }
+
+              $(document).ready(function () {
+                var addressDiv = document.getElementById("addressDiv");
+                var areaName = sessionStorage.getItem("areaName");
+
+                if (areaName == "TakeAway") {
+                  addressDiv.innerHTML = "";
+                }
+
+                var customerId = sessionStorage.getItem("customerId");
+
+                $("#addAddressModal").on("hidden.bs.modal", function () {
+                  resetModal();
+                });
+
+                fetchCustomerAddress(customerId);
+
+                $("#addAddressForm").submit(function (event) {
+                  event.preventDefault();
+
+                  // Collect data from the form
+                  const newAddressData = {
+                    customer_id: customerId,
+                    type: "Home", // Need to Set the type from the UI in future
+                    id: $("#addressId").val(),
+                    address: $("#newAddress").val(),
+                    city: $("#newCity").val(),
+                    state: $("#newState").val(),
+                    country: $("#newCountry").val(),
+                    pincode: $("#newPincode").val(),
+                    restaurant_id: restaurant_id,
+                  };
+
+                  if (newAddressData.id) {
+                    editAddressOnServer(newAddressData);
+                  } else {
+                    addAddressOnServer(newAddressData);
+                  }
+
+                  $("#addAddressModal").modal("hide");
+                });
+
+                $("#addressContainer").on(
+                  "click",
+                  ".edit-address",
+                  function () {
+                    const addressId = $(this).data("id");
+                    editAddress(addressId);
+                  }
+                );
+
+                $("#addressContainer").on(
+                  "click",
+                  ".edit-address",
+                  function () {
+                    const addressId = $(this).data("id");
+                    editAddress(addressId);
+                  }
+                );
+
+                $("#addressContainer").on(
+                  "click",
+                  ".delete-address",
+                  function () {
+                    const addressId = $(this).data("id");
+                    deleteAddress(addressId);
+                  }
+                );
+
+                async function editAddress(addressId) {
+                  console.log("addressId :", addressId);
+
+                  const existingAddressDetails =
+                    await getAddressDetailsById(addressId);
+                  console.log("Existing Address:", existingAddressDetails);
+
+                  // Update the modal title
+                  $("#addAddressModalLabel").text("Edit Address");
+                  // Populate the form fields with existing address details
+                  $("#addressId").val(existingAddressDetails.id);
+                  $("#newAddress").val(existingAddressDetails.address);
+                  $("#newCity").val(existingAddressDetails.city);
+                  $("#newState").val(existingAddressDetails.state);
+                  // $('#newCountry').val(existingAddressDetails.country);
+                  $("#newPincode").val(existingAddressDetails.pincode);
+                  $("#submitAddress").html(
+                    `<p id="editAddressBtn" >Edit Address &nbsp;<i class="bi bi-pencil"></i> </p>`
+                  );
+
+                  $("#addAddressModal").modal("show");
+                }
+
+                async function deleteAddress(addressId) {
+                  console.log("addressId :", addressId);
+
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  try {
+                    const response = await fetch(
+                      url + `/api/customerAddress/${addressId}`,
+                      {
+                        method: "DELETE",
+                        headers: {
+                          Authorization: "Bearer " + token,
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+
+                    if (response.ok) {
+                      const data = await response.json();
+                      console.log("Address deleted successfully:", data);
+
+                      updateUIAfterDeletion(addressId);
+                    } else {
+                      const errorData = await response.json();
+                      console.error("Error deleting address:", errorData);
+                      // alert('Error deleting address. Please try again.');
+                    }
+                  } catch (error) {
+                    console.error("Error deleting address:", error);
+                    // alert('Error deleting address. Please try again.');
+                  }
+                }
+
+                function updateUIAfterDeletion(addressId) {
+                  $(`[data-id="${addressId}"]`).closest(".row").remove();
+                  window.location.reload();
+                  // alert('Address deleted successfully.');
+                }
+
+                async function editAddressOnServer(newAddress) {
+                  console.log("Editaddress : ", newAddress);
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  $.ajax({
+                    url: url + `/api/customerAddress/` + newAddress.id,
+                    type: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer " + token,
+                    },
+                    data: JSON.stringify(newAddress),
+                    success: function (data) {
+                      console.log("Address Edited successfully : ", data);
+                      window.location.reload();
+                    },
+                    error: function (error) {
+                      console.error("Error editing address:", error);
+                    },
+                  });
+                }
+
+                async function addAddressOnServer(newAddress) {
+                  // alert(url);
+                  console.log("Newaddress : ", newAddress);
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  $.ajax({
+                    url: url + `/api/customerAddress`,
+                    type: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer " + token,
+                    },
+                    data: JSON.stringify(newAddress),
+                    success: function (data) {
+                      console.log("Address Added successfully : ", data);
+                      window.location.reload();
+                    },
+                    error: function (error) {
+                      console.error("Error fetching address:", error);
+                    },
+                  });
+                }
+
+                async function getAddressDetailsById(addressId) {
+                  const token = sessionStorage.getItem("token");
+
+                  if (token == null) {
+                    window.location.href = "index.html";
+                  }
+
+                  try {
+                    const response = await fetch(
+                      url + `/api/customerAddress/${addressId}`,
+                      {
+                        method: "GET",
+                        headers: {
+                          Authorization: "Bearer " + token,
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+
+                    const data = await response.json();
+                    console.log("Individual Address:", data);
+                    // tableId = data;
+
+                    return data.data;
+                  } catch (error) {
+                    console.error("Error fetching TableId:", error);
+                    throw error;
+                  }
+                }
+              });
+
+              function fetchCustomerAddress(customerId) {
+                const token = sessionStorage.getItem("token");
+
+                if (token == null) {
+                  window.location.href = "index.html";
+                }
+                $.ajax({
+                  url: url + `/api/getCustomerAddresses/${customerId}`,
+                  type: "GET",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token,
+                  },
+                  success: function (data) {
+                    console.log("Address :", data);
+                    const addresses = data.data;
+
+                    $("#addressContainer").empty();
+
+                    addresses.forEach((address) => {
+                      appendAddressToContainer(address);
+                    });
+                  },
+                  error: function (error) {
+                    console.error("Error fetching address:", error);
+                  },
+                });
+              }
+
+              function appendAddressToContainer(address) {
+                const addressHtml = `
+                <div class="mt-4">
+                    <div class="address-item border p-3 mb-3" data-id="${address.id}">
+                        <p class="mb-0">
+                            <span class="fw-bold">${address.address}</span>, ${address.city}, ${address.state}, ${address.country} - ${address.pincode}
+                        </p>
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-sm edit-address" data-id="${address.id}">
+                                <i class="fas fa-pencil-alt"></i> Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm delete-address" data-id="${address.id}">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            `;
+                $("#addressContainer").append(addressHtml);
+                $(`[data-id="${address.id}"]`).on("click", function () {
+                  // Remove the 'selected-address' class from all address items
+                  sessionStorage.setItem("selectedAddressId", null);
+                  $(".address-item").removeClass("selected-address");
+
+                  // Add the 'selected-address' class to the clicked address item
+                  $(this).addClass("selected-address");
+                  $("#placeOrderContainer").show();
+
+                  // You can add additional logic here to handle the selected address
+                  // For example, you can store the selected address ID in a variable for further use
+                  const selectedAddressId = $(this).data("id");
+                  sessionStorage.setItem(
+                    "selectedAddressId",
+                    selectedAddressId
+                  );
+                  console.log("Selected Address ID:", selectedAddressId);
+                });
+              }
+            })
+            .catch((error) => console.error("Error fetching env.json:", error));
+        </script> -->
+      </body>
+    </html>
+
+    <!-- Add Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include the JavaScript file -->
+  </body>
+
+  <!-- Mirrored from askbootstrap.com/preview/swiggi/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:23 GMT -->
+</html>
