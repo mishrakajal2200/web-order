@@ -14,6 +14,11 @@
 
     <title>Swiggi - Online Food Ordering Website Mobile Template</title>
     <style>
+      .custom-modal {
+  max-height: 60vh; /* Adjust this value as needed */
+  overflow-y: auto; /* Ensures content scrolls if it exceeds max height */
+}
+
       #logout {
         display: none;
       }
@@ -204,7 +209,7 @@
     </div> -->
 
 <!-- Modal -->
-<div
+<!-- <div
   class="modal fade"
   id="cartModal"
   tabindex="-1"
@@ -213,13 +218,13 @@
 >
   <div
     class="modal-dialog modal-dialog-centered"
-    style="max-width: 350px;"
+    style="max-width: 330px;"
   >
-    <div class="modal-content" style="min-height: 250px; padding: 10px;">
-      <div class="modal-header" style="padding: 10px;">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          <span style="color: green">Confirm Your WhatsApp Number</span>
-        </h1>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title fs-2" id="exampleModalLabel">
+          <span style="color:green">Confirm Your WhatsApp Number</span>
+        </h4>
         <button
           type="button"
           class="btn-close"
@@ -237,9 +242,9 @@
           close
         </button>
       </div>
-      <div class="modal-body" style="padding: 10px;">
+      <div class="modal-body" style="padding: 15px;">
         <form id="whatsappForm">
-          <div class="mb-2">
+          <div class="mb-3 mt-3">
             <input
               type="text"
               id="customerName"
@@ -248,7 +253,7 @@
               required
             />
           </div>
-          <div class="input-group mt-2">
+          <div class="input-group mt-3">
             <input
               type="tel"
               id="customerNumber"
@@ -257,14 +262,91 @@
               required
             />
           </div>
-          <p class="text-muted" style="font-size: 12px; margin-top: 5px;">
+          <p class="text-muted" style="font-size: 12px; margin-top:15px;">
+            Yes, I want to receive important information & updates on my
+            WhatsApp.
+          </p>
+        </form>
+
+        <div class="modal-footer mt-5 justify-content-center" style="padding: 10px; ">
+          <button
+            type="button"
+            class="btn btn-danger"
+            id="continueButton"
+            onclick="sendCartDataToServer()"
+            style="
+              background-color: rgb(227, 61, 117);
+              color: aliceblue;
+              border-radius: 5px;
+            "
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+</div> -->
+
+<div
+  class="modal fade"
+  id="cartModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 330px;">
+    <div class="modal-content custom-modal">
+      <div class="modal-header">
+        <h4 class="modal-title fs-2" id="exampleModalLabel">
+          <span style="color:green">Confirm Your WhatsApp Number</span>
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          style="
+            padding: 9px;
+            background-color: rgb(227, 61, 117);
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            width: 70px;
+          "
+        >
+          close
+        </button>
+      </div>
+      <div class="modal-body p-3 h-2">
+        <form id="whatsappForm">
+          <div class="mb-3 mt-3">
+            <input
+              type="text"
+              id="customerName"
+              class="form-control"
+              placeholder="Customer Name"
+              required
+            />
+          </div>
+          <div class="input-group mt-3">
+            <input
+              type="tel"
+              id="customerNumber"
+              class="form-control"
+              placeholder="WhatsApp Number"
+              required
+            />
+          </div>
+          <p class="text-muted" style="font-size: 12px; margin-top:15px;">
             Yes, I want to receive important information & updates on my
             WhatsApp.
           </p>
         </form>
       </div>
-
-      <div class="modal-footer" style="padding: 10px;">
+      <div class="modal-footer mt-3 justify-content-center p-2">
         <button
           type="button"
           class="btn btn-danger"
@@ -282,7 +364,6 @@
     </div>
   </div>
 </div>
-
 
 
     <!-- Modal for OTP -->
@@ -362,7 +443,7 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabelName"></h1>
@@ -595,7 +676,7 @@
       defer
     ></script>
 
-    <!-- <script>
+    <script>
       let url;
 
       document.addEventListener("DOMContentLoaded", () => {
@@ -768,10 +849,10 @@ function updateQuantity(index, change) {
 
           try {
             await sendCartDataToServer(); // Call server to send cart data
-            alert("Order confirmed! Your cart has been stored.");
+            // alert("Order confirmed! Your cart has been stored.");
           } catch (error) {
             console.error("Error placing order:", error);
-            alert("Order confirmed, but there was an error storing your cart.");
+            // alert("Order confirmed, but there was an error storing your cart.");
           }
         });
 
@@ -815,8 +896,6 @@ function updateQuantity(index, change) {
         sessionStorage.setItem("areaName", areaName);
         console.log("Selected Value:", areaName);
       });
-
-      
 
       async function formatCartData(cartItems) {
         var areaName = sessionStorage.getItem("areaName"); //$('input[name="pilih"]:checked').val();
@@ -887,8 +966,8 @@ function updateQuantity(index, change) {
             alert("Error sending cart data. Please try again.");
           });
       }
-    </script> -->
-    <script>
+    </script>
+    <!-- <script>
       let url;
     
       document.addEventListener("DOMContentLoaded", () => {
@@ -1251,7 +1330,7 @@ function updateQuantity(index, change) {
   }
 }
 
-    </script>
+    </script> -->
     
   </body>
 

@@ -242,6 +242,88 @@
       type="c545c18dfef5d9b9ebb1e04f-text/javascript"
     ></script>
 
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const restaurantId = "EPOS737290"; // Replace with your actual RESTAURANT_ID
+    
+        // Fetch location data for the specific restaurant
+        function fetchLocationData() {
+          const apiUrl = `https://app.extraaazpos.com/api/locations?restaurant_id=${restaurantId}`;
+    
+          fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Location Data:", data);
+    
+              if (data.success && data.data && data.data.length > 0) {
+                let locationDetailsHTML = ''; // Initialize an empty string to hold all location details
+    
+                data.data.forEach((location) => {
+                  // Generate the HTML for each location
+                  locationDetailsHTML += `
+                    <div id="location-${location.id}" class="card shadow-lg mt-3 clickable-card" style="border-color: red; cursor: pointer;">
+                      <div class="card-body">
+                        <h4 class="article-title">${location.name}</h4>
+                        <p class="article-content p-1">${location.address}</p>
+                        <footer class="article-info">
+                          <span style="color: red;">Location details for ${location.name}</span>
+                        </footer>
+                      </div>
+                    </div>`;
+                });
+    
+                // Add all location details to the page
+                document.querySelector("#location-container").innerHTML = locationDetailsHTML;
+    
+                // Add click events to each location card for navigation and session storage
+                data.data.forEach((location) => {
+                  document.getElementById(`location-${location.id}`).addEventListener("click", () => {
+                    // Store selected location ID and name in sessionStorage when clicked
+                    sessionStorage.setItem("selectedLocationId", location.id);
+                    sessionStorage.setItem("selectedLocationName", location.name);
+    
+                    // Navigate to home page when location details are clicked
+                    window.location.href = "./home.html"; // Replace with your home page URL
+                  });
+                });
+              } else {
+                console.error("No location data available.");
+              }
+            })
+            .catch((error) => console.error("Error fetching location data:", error));
+        }
+    
+        // Handler for "Use Current Location" button
+        document.querySelector("#currentLocationBtn").addEventListener("click", () => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                console.log("Current Location:", latitude, longitude);
+    
+                // Store the location or use it as needed
+                sessionStorage.setItem("latitude", latitude);
+                sessionStorage.setItem("longitude", longitude);
+                // Navigate to home page immediately
+                window.location.href = "./home.html"; // Replace with your home page URL
+              },
+              (error) => {
+                console.error("Error getting current location:", error);
+                alert("Unable to get current location.");
+              }
+            );
+          } else {
+            alert("Geolocation is not supported by this browser.");
+          }
+        });
+    
+        // Handler for "Select Location Manually" button
+        document.querySelector("#manualLocationBtn").addEventListener("click", () => {
+          // Fetch and display location data directly
+          fetchLocationData();
+        });
+      });
+    </script> -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const restaurantId = "EPOS737290"; // Replace with your actual RESTAURANT_ID
@@ -255,191 +337,85 @@
             .then((data) => {
               console.log("Location Data:", data);
     
-              // Check if location data exists and is valid
               if (data.success && data.data && data.data.length > 0) {
-                const location = data.data[0]; // Get the first and only location
+                let locationDetailsHTML = ''; // Initialize an empty string to hold all location details
     
-                // Display location details directly
-                const locationDetailsHTML = `
-                  <div id="locationDetails" class="card shadow-lg mt-3 clickable-card" style="border-color: red; cursor:pointer">
-                    <div class="card-body">
-                      <h4 class="article-title">${location.name}</h4>
-                      <p class="article-content p-1">${location.address}</p>
-                      <footer class="article-info">
-                        <span style="color: red;">Location details for ${location.name}</span>
-                      </footer>
-                    </div>
-                  </div>`;
+                data.data.forEach((location) => {
+                  // Generate the HTML for each location
+                  locationDetailsHTML += `
+                    <div id="location-${location.id}" class="card shadow-lg mt-3 clickable-card" style="border-color: red; cursor: pointer;">
+                      <div class="card-body">
+                        <h4 class="article-title">${location.name}</h4>
+                        <p class="article-content p-1">${location.address}</p>
+                        <footer class="article-info">
+                          <span style="color: red;">Location details for ${location.name}</span>
+                        </footer>
+                      </div>
+                    </div>`;
+                });
     
-                // Add location details to the page
-                document.querySelector("#location-container").innerHTML =
-                  locationDetailsHTML;
+                // Add all location details to the page
+                document.querySelector("#location-container").innerHTML = locationDetailsHTML;
     
-                // Check if areaName exists
-                if (location.areaName) {
-                  // Store areaName in sessionStorage
-                  sessionStorage.setItem("areaName", location.areaName);
-                  console.log("Area Name:", location.areaName);
-                } else {
-                  // Log error if areaName is not available
-                  console.error("Error: areaName not available for this location.");
-                }
+                // Add click events to each location card for navigation and session storage
+                data.data.forEach((location) => {
+                  document.getElementById(`location-${location.id}`).addEventListener("click", () => {
+                    // Store selected location ID and name in sessionStorage when clicked
+                    sessionStorage.setItem("selectedLocationId", location.id);
+                    sessionStorage.setItem("selectedLocationName", location.name);
     
-                // Store selected location ID and name in sessionStorage
-                sessionStorage.setItem("selectedLocationId", location.id);
-                sessionStorage.setItem("selectedLocationName", location.name);
-    
-                // Add click event to the location details for navigation
-                document.getElementById("locationDetails").addEventListener("click", () => {
-                  // Navigate to home page when location details are clicked
-                  window.location.href = "./home.html"; // Replace with your home page URL
+                    // Navigate to home page when location details are clicked
+                    window.location.href = "./home.html"; // Replace with your home page URL
+                  });
                 });
               } else {
                 console.error("No location data available.");
               }
             })
-            .catch((error) =>
-              console.error("Error fetching location data:", error)
-            );
+            .catch((error) => console.error("Error fetching location data:", error));
         }
     
         // Handler for "Use Current Location" button
-        document
-          .querySelector("#currentLocationBtn")
-          .addEventListener("click", () => {
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(
-                (position) => {
-                  const { latitude, longitude } = position.coords;
-                  console.log("Current Location:", latitude, longitude);
+        document.querySelector("#currentLocationBtn").addEventListener("click", () => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                console.log("Current Location:", latitude, longitude);
     
-                  // Store the location or use it as needed
-                  sessionStorage.setItem("latitude", latitude);
-                  sessionStorage.setItem("longitude", longitude);
+                // Automatically select location with ID 113
+                const selectedLocationId = "113";
+                const selectedLocationName = "Current Location"; // Replace with the actual name of location 113 if known
     
-                  // Navigate to home page immediately
-                  window.location.href = "./home.html"; // Replace with your home page URL
-                },
-                (error) => {
-                  console.error("Error getting current location:", error);
-                  alert("Unable to get current location.");
-                }
-              );
-            } else {
-              alert("Geolocation is not supported by this browser.");
-            }
-          });
+                // Store the location details in sessionStorage
+                sessionStorage.setItem("selectedLocationId", selectedLocationId);
+                sessionStorage.setItem("selectedLocationName", selectedLocationName);
+    
+                // Store the latitude and longitude
+                sessionStorage.setItem("latitude", latitude);
+                sessionStorage.setItem("longitude", longitude);
+    
+                // Navigate to home page immediately
+                window.location.href = "./home.html"; // Replace with your home page URL
+              },
+              (error) => {
+                console.error("Error getting current location:", error);
+                alert("Unable to get current location.");
+              }
+            );
+          } else {
+            alert("Geolocation is not supported by this browser.");
+          }
+        });
     
         // Handler for "Select Location Manually" button
-        document
-          .querySelector("#manualLocationBtn")
-          .addEventListener("click", () => {
-            // Fetch and display location data directly
-            fetchLocationData();
-          });
+        document.querySelector("#manualLocationBtn").addEventListener("click", () => {
+          // Fetch and display location data directly
+          fetchLocationData();
+        });
       });
     </script>
     
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const restaurantId = "EPOS737290"; // Replace with your actual RESTAURANT_ID
-
-        // Fetch location data for the specific restaurant
-        function fetchLocationData() {
-          const apiUrl = `https://app.extraaazpos.com/api/locations?restaurant_id=${restaurantId}`;
-
-          fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Location Data:", data);
-
-              // Check if location data exists and is valid
-              if (data.success && data.data && data.data.length > 0) {
-                const location = data.data[0]; // Get the first and only location
-
-                // Display location details directly
-                const locationDetailsHTML = `
-                  <div id="locationDetails" class="card shadow-lg mt-3 clickable-card" style="border-color: red; cursor:pointer">
-                    <div class="card-body">
-                      <h4 class="article-title">${location.name}</h4>
-                      <p class="article-content p-1">${location.address}</p>
-                      <footer class="article-info">
-                        <span style="color: red;">Location details for ${location.name}</span>
-                      </footer>
-                    </div>
-                  </div>`;
-
-                // Add location details to the page
-                document.querySelector("#location-container").innerHTML =
-                  locationDetailsHTML;
-
-                // Check if areaName exists
-                if (location.areaName) {
-                  // Store areaName in sessionStorage
-                  sessionStorage.setItem("areaName", location.areaName);
-                  console.log("Area Name:", location.areaName);
-                } else {
-                  // Log error if areaName is not available
-                  console.error(
-                    "Error: areaName not available for this location."
-                  );
-                }
-
-                // Store selected location ID and navigate to the home page
-                sessionStorage.setItem("selectedLocationId", location.id);
-                sessionStorage.setItem("selectedLocationName", location.name);
-
-                // Delay navigation by 2 seconds
-                setTimeout(() => {
-                  window.location.href = "./home.html"; // Replace with your home page URL
-                }, 1000); // 2000 milliseconds = 2 seconds
-              } else {
-                console.error("No location data available.");
-              }
-            })
-            .catch((error) =>
-              console.error("Error fetching location data:", error)
-            );
-        }
-
-        // Handler for "Use Current Location" button
-        document
-          .querySelector("#currentLocationBtn")
-          .addEventListener("click", () => {
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(
-                (position) => {
-                  const { latitude, longitude } = position.coords;
-                  console.log("Current Location:", latitude, longitude);
-
-                  // Store the location or use it as needed
-                  sessionStorage.setItem("latitude", latitude);
-                  sessionStorage.setItem("longitude", longitude);
-
-                  // Delay navigation by 2 seconds
-                  setTimeout(() => {
-                    window.location.href = "./home.html"; // Replace with your home page URL
-                  }, 1000); // 2000 milliseconds = 2 seconds
-                },
-                (error) => {
-                  console.error("Error getting current location:", error);
-                  alert("Unable to get current location.");
-                }
-              );
-            } else {
-              alert("Geolocation is not supported by this browser.");
-            }
-          });
-
-        // Handler for "Select Location Manually" button
-        document
-          .querySelector("#manualLocationBtn")
-          .addEventListener("click", () => {
-            // Fetch and display location data directly
-            fetchLocationData();
-          });
-      });
-    </script> -->
   </body>
 
   <!-- Mirrored from askbootstrap.com/preview/swiggi/location.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:26 GMT -->

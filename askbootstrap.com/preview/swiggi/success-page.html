@@ -30,12 +30,14 @@
 
     <style>
       body{
-        background-image: url(./img/shiva.jpg!d);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-        
+       
+  background-image: url('./img/shiva.jpg!d');
+  background-size: cover; /* Makes sure the image covers the whole container */
+  background-attachment: fixed; /* Keeps the background fixed in place */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  height: 100vh; /* Ensures the background takes up the full viewport height */
+  width: 100%;
       }
       .order-number {
   font-size: 14px; /* Adjust the size as needed */
@@ -86,7 +88,7 @@
     </style>
 
   </head>
-  <body class="bg-light fixed-bottom-bar loading">
+  <body class="bg-light fixed-bottom-bar">
     <div class="osahan-checkout">
       <div
         class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center"

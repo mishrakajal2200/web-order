@@ -320,6 +320,7 @@
                     sessionStorage.setItem("customerName", customer_name);
                     sessionStorage.setItem("customerNumber", customer_number);
                     sessionStorage.setItem("customerId", customer_id);
+                    
 
                     // Check if locationId and restaurant_id exist in the response before setting them
                     if (restaurant_id) {
@@ -335,7 +336,7 @@
                     } else {
                       console.warn("locationId is undefined in API response.");
                     }
-                    window.location.href = "./location.html"; // Redirect or handle success
+                    window.location.href = "location.html"; // Redirect or handle success
                   } else {
                     console.error("Login Error:", data.error);
                     alert("Login failed. Please check your credentials.");
@@ -350,6 +351,8 @@
           .catch((error) => console.error("Error fetching env.json:", error));
       });
     </script>
+
+    
   </body>
 
   <!-- Mirrored from askbootstrap.com/preview/swiggi/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:26 GMT -->

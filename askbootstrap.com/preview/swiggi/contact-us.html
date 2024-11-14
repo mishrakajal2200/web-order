@@ -34,24 +34,24 @@
 <div class="flex-column">
 <h6 class="font-weight-bold">Tell us about yourself</h6>
 <p class="text-muted">Whether you have questions or you would just like to say hello, contact us.</p>
-<form>
+<form id="contactForm">
 <div class="form-group">
 <label for="exampleFormControlInput1" class="small font-weight-bold">Your Name</label>
-<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Gurdeep Osahan">
+<input type="text" class="form-control" id="name" placeholder="Gurdeep Osahan" required>
 </div>
 <div class="form-group">
 <label for="exampleFormControlInput2" class="small font-weight-bold">Email Address</label>
-<input type="email" class="form-control" id="exampleFormControlInput2" placeholder="iamosahan@gmail.com">
+<input type="email" class="form-control" id="email" placeholder="iamosahan@gmail.com" required>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
 <label for="exampleFormControlInput3" class="small font-weight-bold">Phone Number</label>
 <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="1-800-643-4500">
-</div>
+</div> -->
 <div class="form-group">
 <label for="exampleFormControlTextarea1" class="small font-weight-bold">HOW CAN WE HELP YOU?</label>
-<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Hi there, I would like to ..." rows="3"></textarea>
+<textarea class="form-control" id="message" placeholder="Hi there, I would like to ..." rows="3"></textarea>
 </div>
-<a class="btn btn-primary btn-block" href="#">SUBMIT</a>
+<a class="btn btn-primary btn-block" href="#" type="submit">SUBMIT</a>
 </form>
 
 <div class="mapouter pt-3">
@@ -177,6 +177,44 @@ Help
 
 <script src="js/osahan.js" type="2be6bfe704e26542618f02cb-text/javascript"></script>
 <script src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="2be6bfe704e26542618f02cb-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8bc335a168e985dc","version":"2024.8.0","r":1,"serverTiming":{"name":{"cfL4":true}},"token":"dd471ab1978346bbb991feaa79e6ce5c","b":1}' crossorigin="anonymous"></script>
+
+<script>
+    // JavaScript to handle form submission and validation
+
+// Add an event listener for form submission
+document.getElementById('contactForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get form data
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // Basic form validation
+    if (!name || !email || !message) {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+    if (!validateEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    // Display a custom popup message
+    alert('Your info got received. Thank you for contacting us, ' + name + '!');
+
+    // Optionally, reset the form after submission
+    document.getElementById('contactForm').reset();
+});
+
+// Function to validate email format
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+</script>
 </body>
 
 <!-- Mirrored from askbootstrap.com/preview/swiggi/contact-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:28 GMT -->

@@ -219,29 +219,29 @@ function updateCartItemQuantity(itemId, newQuantity) {
 }
 
 
-
-$('input[name="pilih"]').on("change", function () {
-  // Get the value of the selected radio button
-  var areaName = $('input[name="pilih"]:checked').val();
-
-  sessionStorage.setItem("areaName", areaName);
-  console.log("Selected Value:", areaName);
-});
-
-
 $(document).ready(function () {
-  // When the radio button changes
-  
+  $('input[name="pilih"]').on("change", function () {
+    // Get the value of the selected radio button
+    var areaName = $('input[name="pilih"]:checked').val();
 
-  const token = sessionStorage.getItem("token");
-  if (token == null) {
-    window.location.href = "login.html";
+    // Toggle the Add Address button based on the selected value
+    if (areaName === "Delivery") {
+      $('#addAddressButton').show(); // Show button if 'Delivery' is selected
+    } else {
+      $('#addAddressButton').hide(); // Hide button if 'Takeaway' is selected
+    }
+
+    sessionStorage.setItem("areaName", areaName);
+    console.log("Selected Value:", areaName);
+  });
+
+  // Initial check to set button visibility on page load
+  var initialAreaName = sessionStorage.getItem("areaName");
+  if (initialAreaName === "Delivery") {
+    $('#addAddressButton').show();
+  } else {
+    $('#addAddressButton').hide();
   }
-  if (!sessionStorage.getItem("areaName")) {
-    // Trigger change event on page load
-    $('input[name="pilih"]').trigger("change");
-  }
-  
 
   const locationId = sessionStorage.getItem("selectedLocationId");
   var url = "";
@@ -275,17 +275,6 @@ $(document).ready(function () {
 
       updateCartUI();
 
-      // fetch(
-      //   `https://app.extraaazpos.com/api/get-categories?location_id=${locationId}&restaurant_id=${restaurantId}`,
-      //   {
-      //     method: "GET",
-      //     headers: {
-      //       Accept: "application/json",
-      //       Authorization: "Bearer " + token,
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // )
       fetch(
         `https://app.extraaazpos.com/api/get-categories?location_id=${locationId}&restaurant_id=${restaurantId}`,
         {
@@ -300,38 +289,18 @@ $(document).ready(function () {
         .then((response) => response.json())
         .then((data) => {
           console.log("Categories:", data.data);
-      
-          if (Array.isArray(data.data) && data.data.length > 0) {
-            var userId = data.data[0]["user_id"];
-            console.log("User ID:", userId);
-            usingUserId(userId);
-            categoryId = data.data[0]["id"];
-            currentPage = 1;
-            itemsContainer.innerHTML = "";
-            fetchItems();
-            updateCategories(data.data);
-            updateModalCategories(data.data);
-          } else {
-            console.error("Error: Categories data is empty or not an array");
-          }
+
+          var userId = data.data[0]["user_id"];
+          console.log(data.data[0]["user_id"]);
+          usingUserId(userId);
+          categoryId = data.data[0]["id"];
+          currentPage = 1;
+          itemsContainer.innerHTML = "";
+          fetchItems();
+          updateCategories(data.data);
+          updateModalCategories(data.data);
         })
         .catch((error) => console.error("Error fetching categories:", error));
-      
-        // .then((response) => response.json())
-        // .then((data) => {
-        //   console.log("Categories:", data.data);
-
-        //   var userId = data.data[0]["user_id"];
-        //   console.log(data.data[0]["user_id"]);
-        //   usingUserId(userId);
-        //   categoryId = data.data[0]["id"];
-        //   currentPage = 1;
-        //   itemsContainer.innerHTML = "";
-        //   fetchItems();
-        //   updateCategories(data.data);
-        //   updateModalCategories(data.data);
-        // })
-        // .catch((error) => console.error("Error fetching categories:", error));
 
       fetch(
         `https://app.extraaazpos.com/api/getOrderHistory?location_id=${locationId}&restaurant_id=${restaurantId}&customer_id=${customerId}`,
@@ -505,59 +474,64 @@ $(document).ready(function () {
           .catch((error) => console.error("Error fetching items:", error));
       }
 
-  function displayItems(displayItems) {
-    displayItems.forEach((item) => {
-      const foodTypeLogo = item.item_food_type === "1"
-        ? "image/veg-icon.png"
-        : "image/non-veg-icon.png";
-      let displayPrice = item.item_default_sell_price;
-      if (!displayPrice) {
-        displayPrice = item.areaPrice1; // Fallback price
-      }
+
+      // display items on UI
+      function displayItems(displayItems) {
+        displayItems.forEach((item) => {
+          const foodTypeLogo =
+            item.item_food_type === "1"
+              ? "image/veg-icon.png"
+              : "image/non-veg-icon.png";
+          let displayPrice = item.item_default_sell_price;
+          if (!displayPrice) {
+            // Fetch area price and calculate the price
+            displayPrice = item.areaPrice1;
+          }
   
-      const itemHtml = `
-      <div class="shop-list-wrap shadow-lg bg-white mb-3">
-        <div class="row list-product mt-2 align-items-center ">
-          <!-- Product Info Section (Name and Price) -->
-          <div class="col-4 col-md-3 col-lg-2 ml-3">
-            <div class="left-img">
-              <div class="img-block d-flex align-items-center p-2">
-                <img src="https://w7.pngwing.com/pngs/366/356/png-transparent-hamburger-whopper-chicken-sandwich-fried-chicken-fast-food-fried-chicken-food-recipe-fast-food-restaurant.png" 
-                     alt="img" 
-                     class="custom-img img-fluid rounded-circle"
-                     style="max-width: 100%;  height: auto;"/>
-              </div>
-              <div class="col-6 col-md-6 col-lg-7">
-            <div class="product-decs">
-              <h2 style="font-size: 1rem; font-weight: bold; color: #333;">
-                <a href="#" class="product-link" style="text-decoration: none; color: inherit;">${item.item_name}</a>
-              </h2>
-              <div class="pricing-meta" style="display: flex; align-items: center; font-size: 0.9rem; color: #e74c3c;">
-                ₹<span class="price iprice" style="margin-left: 5px;">${displayPrice}</span>
-                <span class="visually-hidden" id="item-id" style="display: none;">${item.id}</span>
-              </div>
-            </div>
-          </div>
-            </div>
-          </div>
           
-          <!-- "Add" Button Section -->
-          <div class=" col-2 text-right mr-1">
-            <div class="product-desc-wrap">
-              <div class="add-to-link">
-                <a class="add-button cart-11 add-to-cart-btn btn-outline-gray" href="#" onclick="addItem()"
-                   data-variant-status="${item.variantStatus}"
-                   data-addon-status="${item.addOnStatus}"
-                   style="border-radius: 6px; padding: 0.5rem 0.75rem; text-decoration: none;">
-                   ADD
-                </a>
+          const itemHtml = `
+  
+  <div class="shop-list-wrap shadow-lg bg-white mb-3" 
+    <div class="list-product mt-2" style="display: flex; justify-content: space-between; align-items: center;">
+      <!-- Product Info Section (Name and Price) -->
+      <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-1">
+        <div class="left-img">
+          <div class="img-block d-flex align-items-center p-3">
+            <img src="https://w7.pngwing.com/pngs/366/356/png-transparent-hamburger-whopper-chicken-sandwich-fried-chicken-fast-food-fried-chicken-food-recipe-fast-food-restaurant.png" 
+                 alt="img" 
+                 style="border-radius: 50%; width: 60px; height: 60px;"/>
+            <div class="product-decs" style="display: flex; flex-direction: column; margin-top: 4px;">
+              <h2 class="ml-2" style="font-size: 18px; font-weight: bold; color: #333;">
+                <a href="#" class="product-link" style="text-decoration: none; color: inherit;">${item.item_name}</a>
+                <div class="pricing-meta" style="display: flex; align-items: center; font-size: 16px; color: #e74c3c;">
+                ₹<li class="price iprice" style="list-style-type: none; margin-left: 5px;">${displayPrice}</li>
+                <li class="visually-hidden" id="item-id" style="display: none;">${item.id}</li>
               </div>
+              </h2>
             </div>
           </div>
         </div>
       </div>
+  
+      <!-- "Add" Button Section -->
+      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="text-align: right;">
+        <div class="product-desc-wrap">
+          <div class="add-to-link">
+            <a class="add-button cart-11 add-to-cart-btn btn-outline-gray" href="#" onclick="addItem()"
+               data-variant-status="${item.variantStatus}"
+               data-addon-status="${item.addOnStatus}"
+               style="
+                      border-radius: 6px; text-align: center; 
+                      transition: background-color 0.3s; text-decoration: none;">
+               ADD
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-       <!-- Cart Modal -->
+    <!-- Cart Modal -->
       <div class="modal" id="cartModal1" tabindex="-1" role="dialog">
               flex-direction: column;">
           <div class="modal-dialog" role="document">
@@ -578,12 +552,11 @@ $(document).ready(function () {
               </div>
           </div>
       </div>
-      `;
   
-      itemsContainer.innerHTML += itemHtml;
-    });
-  }
-  
+  `;
+          itemsContainer.innerHTML += itemHtml;
+        });
+      }
 
       // using modifier
       $(document).on("click", ".cart-11", function () {
@@ -754,6 +727,18 @@ $(document).ready(function () {
         sessionStorage.setItem("cart", JSON.stringify(existingCartItems));
         updateCartUI();
       }
+
+      // function addItemToLocalStorage(itemId, itemName, itemBasePrice, itemQuantity) {
+      //   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      //   cartItems.push({
+      //     id: itemId,
+      //     name: itemName,
+      //     price: itemBasePrice,
+      //     product_total: itemBasePrice * itemQuantity,
+      //     quantity: itemQuantity,
+      //   });
+      //   localStorage.setItem("cart", JSON.stringify(cartItems));
+      // }
 
       function updateCartIcon(count) {
         const cartIcon = document.getElementById("cart-icon");

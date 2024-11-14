@@ -148,13 +148,6 @@ function fetchOrderDetails(tableId) {
 //     </div>
 //   </div>
 // `;
-
-
-
-
-
-
-
 //     orderDetailsContainer.innerHTML += orderItemsTableHtml;
 //     document
 //       .getElementById("placeOrderButton")
@@ -242,30 +235,29 @@ orderItemsHtml += '</div>';
     orderDetailsContainer.innerHTML += orderSummaryHtml;
 
     // Optionally, add a 'Place Order' button for Delivery orders
-    if (data.data[0].areaName == "Delivery") {
-      const placeOrderHtml = `
-        <div class="place-order justify-content-center d-flex ">
-          <button id="placeOrderButton" type="button" class="btn btn-danger shadow p-3 w-lg-25 w-50"
-                  style="border-radius: 15px; white-space: nowrap;"> 
-            Place Order <i class="bi bi-arrow-right"></i>
-          </button>
-        </div>
-      `;
-      orderDetailsContainer.innerHTML += placeOrderHtml;
+   // Optionally, add a 'Place Order' button for Takeaway orders
+if (data.data[0].areaName == "TakeAway") {
+  const placeOrderHtml = `
+    <div class="place-order justify-content-center d-flex">
+      <button id="placeOrderButton" type="button" class="btn btn-danger shadow p-3"> 
+        Place Order <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+  `;
+  orderDetailsContainer.innerHTML += placeOrderHtml;
 
-      document
-        .getElementById("placeOrderButton")
-        .addEventListener("click", function () {
-          handleRazorpayPayment(data);
-        });
-    }
+  document
+    .getElementById("placeOrderButton")
+    .addEventListener("click", function () {
+      handleRazorpayPayment(data);
+    });
+}
+
   } else {
     // Display a message if there are no orders
     orderDetailsContainer.innerHTML = '<p class="text-muted text-red">No orders found.</p>';
   }
 }
-
-
 
 async function handleRazorpayPayment(data) {
   const grandTotal = calculateGrandTotal(data.data);
