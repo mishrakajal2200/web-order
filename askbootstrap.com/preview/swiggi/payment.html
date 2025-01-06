@@ -171,145 +171,126 @@
       
 
      <!-- Details -->
-     <div
-      class="row"
-      style="margin-top: 13vh; padding-left: 5vh; padding-right: 5vh"
-    >
-      <div class="col-sm-6 mb-2 mt-3">
-        <div class="card shadow-lg">
-          <img src="img/logo.png" alt="" style="width: 20vh; padding: 3vh" />
-          <h2
-            style="
-              text-align: end;
-              margin-top: -7vh;
-              font-weight: 800;
-              color: #1b1917;
-            "
-          >
-           
-          </h2>
-          <div class="col-md-8" style="display: none">
-            <div class="d-inline-block mt-2 mx-2">
-              <i
-                class="fas fa-map-marker-alt"
-                style="font-size: 24px; color: black"
-              ></i>
+      <div>
+        <div
+        class="col-12 col-sm-6 col-lg-12 justify-content-center align-items-center"
+        style="margin-top: 13vh; padding-left: 5vh; padding-right: 5vh"
+      >
+        <div class="col-sm-6 mb-2 mt-3">
+          <div class="card shadow-lg p-3 ">
+            <div class="col-md-8" style="display: none">
+              <div class="d-inline-block mt-2 mx-2">
+                <i
+                  class="fas fa-map-marker-alt"
+                  style="font-size: 24px; color: black"
+                ></i>
+              </div>
+              <div class="d-inline-block">
+                <h6 style="color: rgb(15, 16, 15)">
+                  <strong>Delivery to</strong>
+                  <span>Vasant Vihar, New Delhi, Delhi, India</span>
+                </h6>
+              </div>
             </div>
-            <div class="d-inline-block">
-              <h6 style="color: rgb(15, 16, 15)">
-                <strong>Delivery to</strong>
-                <span>Vasant Vihar, New Delhi, Delhi, India</span>
-              </h6>
+            <div class="col-md-12" style="display: flex; align-items:center">
+              <div class="d-inline-block mx-2">
+               <img src="./img/whatsapp.webp" alt="" style="width: 40px;">
+              </div>
+              <div class="d-inline-block">
+                <h6 style="color: rgb(15, 16, 15)">
+                  <strong id="custNo">7878678978</strong> (We’ll send order
+                  updates on this no.)
+                </h6>
+              </div>
             </div>
-          </div>
-
-          <div class="col-md-12" style="display: flex; align-items:center">
-            <div class="d-inline-block mx-2">
-             <img src="./img/whatsapp.webp" alt="" style="width: 40px;">
-            </div>
-            <div class="d-inline-block">
-              <h6 style="color: rgb(15, 16, 15)">
-                <strong id="custNo">7878678978</strong> (We’ll send order
-                updates on this no.)
-              </h6>
-            </div>
-          </div>
-
-          <div class="col-md-12 mt-3 align-items-center" style="display: block" id="addressDiv">
-            <div class="container-fluid">
-              <div class="row align-items-center">
-                <!-- Icon -->
-                <div class="col-2 col-sm-2 text-center">
-                  <img src="./img/homeicons.png" alt="" style="width: 30px;">
+  
+            <div class="col-md-12 align-items-center" style="display: block" id="addressDiv">
+              <div class="container-fluid">
+                <div class="row align-items-center">
+                  <!-- Icon -->
+                  <div class="col-2 col-sm-2 text-center">
+                    <img src="./img/homeicons.png" alt="" style="width: 30px;">
+                  </div>
+              
+                  <!-- Address Title -->
+                  <div class="col-6 col-sm-8">
+                    <h6 class="mb-0" style="color: rgb(15, 16, 15)">
+                      <strong id="custNo" style="text-wrap: nowrap;">Address</strong>
+                    </h6>
+                  </div>
+                  <!-- Add Address Button -->
+                  <div class="col-4 col-sm-3 text-end">
+                    <button
+                      class="btn btn-primary btn-sm w-100 w-sm-auto"
+                      onclick="resetModal()"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addAddressModal"
+                    >
+                      Address
+                    </button>
+                  </div>
                 </div>
-            
-                <!-- Address Title -->
-                <div class="col-6 col-sm-8">
-                  <h6 class="mb-0" style="color: rgb(15, 16, 15)">
-                    <strong id="custNo" style="text-wrap: nowrap;">Address</strong>
+              </div>
+              
+              <!-- <div class="d-inline ms-0">
+                <div class="d-inline-block mx-3">
+                 <img src="./img/homeicons.png" alt="" style="width: 30px;">
+                </div>
+                <div class="d-inline-block">
+                  <h6 style="color: rgb(15, 16, 15)">
+                    <strong id="custNo">Address</strong>
                   </h6>
                 </div>
-            
-                <!-- Add Address Button -->
-                <div class="col-4 col-sm-3 text-end">
+                <div class="d-inline-block float-end">
                   <button
-                    class="btn btn-primary btn-sm w-100 w-sm-auto"
+                    class="custom-btn btn-14 "
+                    class="btn btn-primary btn-sm float-end"
                     onclick="resetModal()"
                     data-bs-toggle="modal"
                     data-bs-target="#addAddressModal"
                   >
-                    Address
+                    Add Address 
                   </button>
+                </div>
+              </div> -->
+              <div class="d-inline">
+                <div
+                  id="addressContainer"
+                  class="ms-2"
+                  style="
+                    margin-top: 10vh;
+                    overflow-y: auto;
+                    max-height: 37vh;
+                    margin-top: 7vh;
+                    /* scrollbar-width: none; */
+                  "
+                ></div>
+              </div>
+  
+              <div class="d-inline-block float-end">
+                <div class="controls-update" style="display: none; color: red">
+                  <a href="#" style="color: red; padding: 16px">update</a>
                 </div>
               </div>
             </div>
-            
-            <!-- <div class="d-inline ms-0">
-              <div class="d-inline-block mx-3">
-               <img src="./img/homeicons.png" alt="" style="width: 30px;">
-              </div>
-              <div class="d-inline-block">
-                <h6 style="color: rgb(15, 16, 15)">
-                  <strong id="custNo">Address</strong>
-                </h6>
-              </div>
-              <div class="d-inline-block float-end">
-                <button
-                  class="custom-btn btn-14 "
-                  class="btn btn-primary btn-sm float-end"
-                  onclick="resetModal()"
-                  data-bs-toggle="modal"
-                  data-bs-target="#addAddressModal"
-                >
-                  Add Address 
-                </button>
-              </div>
-            </div> -->
-            <div class="d-inline">
-              <div
-                id="addressContainer"
-                class="ms-2"
-                style="
-                  margin-top: 10vh;
-                  overflow-y: auto;
-                  max-height: 37vh;
-                  margin-top: 7vh;
-                  /* scrollbar-width: none; */
-                "
-              ></div>
-            </div>
-
-            <div class="d-inline-block float-end">
-              <div class="controls-update" style="display: none; color: red">
-                <a href="#" style="color: red; padding: 16px">update</a>
-              </div>
-            </div>
+  
+           
           </div>
-
-          <!--<div class="input-group mt-5 mb-5 mx-2">-->
-          <!--    <span class="input-group-text">-->
-          <!--        <i class="far fa-comment-alt" style="font-size: 14px"></i>-->
-          <!--    </span>-->
-          <!--    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
-          <!--        style="background-color: #fff; border-color: #d4c6c6">-->
-          <!--        Preparation Instruction +-->
-          <!--    </button>-->
-          <!-- <button="submit" class="btn btn-light" >Preparation Instruction +</button> -->
-          <!--</div>-->
+  
         </div>
-      </div>
-      <div class="col-sm-6 mt-3">
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <div id="orderDetails"></div>
+        <div class="col-sm-6 mt-3">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <div id="orderDetails"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      </div>
+       
+     
     
     
-    
-
       <!-- address -->
       <div class="p-3 osahan-cart-item mt-3 fixed-center" style="display: none;">
         <div class="osahan-cart-item-profile bg-white rounded shadow p-3 mt-n5">
@@ -364,9 +345,6 @@
         </div>
       </div>
     <!-- details -->
-
-    
-    
      <!-- Container for Address and Bill Details -->
 <!-- Payment Modal -->
 <div
@@ -1102,7 +1080,7 @@ aria-hidden="true"
           // $('#newCountry').val(existingAddressDetails.country);
           $("#newPincode").val(existingAddressDetails.pincode);
           $("#submitAddress").html(
-            `<p id="editAddressBtn" >Edit Address &nbsp;<i class="bi bi-pencil"></i> </p>`
+            `<p id="editAddressBtn" style="color:white; align-items:center;">Edit Address &nbsp;<i class="bi bi-pencil"></i> </p>`
           );
 
           $("#addAddressModal").modal("show");

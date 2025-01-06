@@ -26,17 +26,30 @@
     <link href="./img/css/style.css" rel="stylesheet" />
 
     <link href="vendor/sidebar/demo.css" rel="stylesheet" />
+    <style>
+      #vid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the entire viewport */
+  z-index: -1; /* Places the video behind other content */
+}
+    </style>
+
   </head>
   <body>
+
     <div class="osahan-signup login-page">
       <video loop autoplay muted id="vid">
         <source src="img/bg.mp4" type="video/mp4" />
         <source src="img/bg.mp4" type="video/ogg" />
         Your browser does not support the video tag.
       </video>
-      <div class="vh-100">
+     
         <div class="p-4">
-          <h2 class="text-white my-0">Hello There.</h2>
+          <h2 class="text-white">Hello There.</h2>
           <p class="text-white text-50">Sign up to continue</p>
           <form
             class="mt-5 mb-4 signupform"
@@ -122,7 +135,7 @@
             </p></a
           >
         </div>
-      </div>
+    
     </div>
 
     <nav id="main-nav">
@@ -274,17 +287,14 @@
       src="vendor/bootstrap/js/bootstrap.bundle.min.js"
       type="37273f18eae028c698c5c7fb-text/javascript"
     ></script>
-
     <script
       type="37273f18eae028c698c5c7fb-text/javascript"
       src="vendor/slick/slick.min.js"
     ></script>
-
     <script
       type="37273f18eae028c698c5c7fb-text/javascript"
       src="vendor/sidebar/hc-offcanvas-nav.js"
     ></script>
-
     <script
       src="js/osahan.js"
       type="37273f18eae028c698c5c7fb-text/javascript"
@@ -296,283 +306,6 @@
     ></script>
 
     <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Fetch the environment configuration from the JSON file
-        fetch("/env.json")
-          .then((response) => response.json())
-          .then((data) => {
-            const restaurantData = data.RESTAURANTS[0]; // Assuming only one restaurant in the array
-
-            // Always use the hardcoded restaurant_id instead of location
-            const restaurant_id = "EPOS883776"; // Hardcoded value
-
-            // Log to confirm that restaurant_id is correct
-            console.log("Final Restaurant ID being used:", restaurant_id);
-
-            const sign_up_btn = document.querySelector("#sign-up-btn");
-            const osahan_signup = document.querySelector(".osahan-signup");
-            const registerId = document.querySelector("#registerId");
-
-            // Event listener for showing the sign-up form
-            sign_up_btn.addEventListener("click", () => {
-              osahan_signup.classList.add("sign-up-mode");
-            });
-
-            // Event listener for registration button click
-            registerId.addEventListener("click", () => {
-              const email = document.getElementById("email").value;
-              const password = document.getElementById("password").value;
-              const name = document.getElementById("name").value;
-              const number = document.getElementById("number").value;
-
-              console.log("Sign-Up Data:", { email, password, name, number });
-
-              const apiUrl =
-                "https://app.extraaazpos.com/api/customer-register";
-
-              fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  email: email,
-                  password: password,
-                  name: name,
-                  mobile: number,
-                  restaurant_id: restaurant_id, // This will always be "EPOS883776"
-                  loc_id: null, // Explicitly set locationId to null
-                }),
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log("Response Data:", data);
-                  if (data.success) {
-                    const {
-                      token,
-                      customer_name,
-                      customer_number,
-                      customer_id,
-                      registrationId,
-                      locationId,
-                    } = data.data;
-                    sessionStorage.setItem("token", token);
-                    sessionStorage.setItem("customerName", customer_name);
-                    sessionStorage.setItem("customerNumber", customer_number);
-                    sessionStorage.setItem("customerId", customer_id);
-                    if (registrationId)
-                      sessionStorage.setItem("registrationId", registrationId);
-                    if (locationId)
-                      sessionStorage.setItem("locationId", locationId);
-                    window.location.href = "./location.html"; // Redirect on success
-                  } else {
-                    console.error("Error in Sign-Up:", data.error);
-                    alert("Error in Sign-Up. Please try again.");
-                  }
-                })
-                .catch((error) => {
-                  console.error("Error during Sign-Up:", error);
-                  alert("Error during Sign-Up. Please try again.");
-                });
-            });
-          })
-          .catch((error) => console.error("Error fetching env.json:", error));
-      });
-    </script> -->
-
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Fetch the environment configuration from the JSON file
-        fetch("/env.json")
-          .then((response) => response.json())
-          .then((data) => {
-            const restaurantData = data.RESTAURANTS[0]; // Assuming only one restaurant in the array
-
-            // Hardcoded restaurant_id value
-            // Always use the hardcoded restaurant_id instead of location
-            const restaurant_id = "EPOS737290"; // Hardcoded value
-            const urlSegment = "EPOS737290";
-
-            // Log to confirm that restaurant_id is correct
-            console.log("Final urlSegment ID being used:", urlSegment);
-
-            const sign_up_btn = document.querySelector("#sign-up-btn");
-            const osahan_signup = document.querySelector(".osahan-signup");
-            const registerId = document.querySelector("#registerId");
-
-            // Event listener for showing the sign-up form
-            sign_up_btn.addEventListener("click", () => {
-              osahan_signup.classList.add("sign-up-mode");
-            });
-
-            // Event listener for registration button click
-            registerId.addEventListener("click", () => {
-              const email = document.getElementById("email").value;
-              const password = document.getElementById("password").value;
-              const name = document.getElementById("name").value;
-              const number = document.getElementById("number").value;
-
-              console.log("Sign-Up Data:", { email, password, name, number });
-
-              const apiUrl =
-                "https://app.extraaazpos.com/api/customer-register";
-
-              fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  email: email,
-                  password: password,
-                  name: name,
-                  mobile: number,
-                  restaurant_id: urlSegment, // This will always be "EPOS883776"
-                  loc_id: null, // Explicitly set locationId to null
-                }),
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log("Response Data:", data);
-                  if (data.success) {
-                    const {
-                      token,
-                      customer_name,
-                      customer_number,
-                      customer_id,
-                      registrationId,
-                      locationId,
-                    } = data.data;
-
-                    // Store user info in sessionStorage
-                    sessionStorage.setItem("token", token);
-                    sessionStorage.setItem("customerName", customer_name);
-                    sessionStorage.setItem("customerNumber", customer_number);
-                    sessionStorage.setItem("customerId", customer_id);
-
-                    if (registrationId)
-                      sessionStorage.setItem("urlSegment", registrationId);
-                    if (locationId)
-                      sessionStorage.setItem("locationId", locationId);
-
-                    // Store restaurant ID (EPOS883776) in localStorage
-                    localStorage.setItem("restaurantId", restaurant_id);
-
-                    // Redirect on success
-                    window.location.href = "./location.html";
-                  } else {
-                    console.error("Error in Sign-Up:", data.error);
-                    alert("Error in Sign-Up. Please try again.");
-                  }
-                })
-                .catch((error) => {
-                  console.error("Error during Sign-Up:", error);
-                  alert("Error during Sign-Up. Please try again.");
-                });
-            });
-          })
-          .catch((error) => console.error("Error fetching env.json:", error));
-      });
-    </script> -->
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Fetch the environment configuration from the JSON file
-        fetch("/env.json")
-          .then((response) => response.json())
-          .then((data) => {
-            const restaurantData = data.RESTAURANTS[0]; // Assuming only one restaurant in the array
-
-            // Hardcoded restaurant_id and urlSegment values
-            const restaurant_id = "EPOS737290"; // Hardcoded value
-            const urlSegment = "EPOS737290"; // Same as restaurant_id in this case
-
-            // Log to confirm that restaurant_id and urlSegment are correct
-            console.log("Final restaurant_id being used:", restaurant_id);
-            console.log("Final urlSegment being used:", urlSegment);
-
-            // Store restaurant_id and urlSegment in localStorage
-            localStorage.setItem("restaurantId", restaurant_id);
-            localStorage.setItem("urlSegment", urlSegment);
-
-            const sign_up_btn = document.querySelector("#sign-up-btn");
-            const osahan_signup = document.querySelector(".osahan-signup");
-            const registerId = document.querySelector("#registerId");
-
-            // Event listener for showing the sign-up form
-            sign_up_btn.addEventListener("click", () => {
-              osahan_signup.classList.add("sign-up-mode");
-            });
-
-            // Event listener for registration button click
-            registerId.addEventListener("click", () => {
-              const email = document.getElementById("email").value;
-              const password = document.getElementById("password").value;
-              const name = document.getElementById("name").value;
-              const number = document.getElementById("number").value;
-
-              console.log("Sign-Up Data:", { email, password, name, number });
-
-              const apiUrl =
-                "https://app.extraaazpos.com/api/customer-register";
-
-              fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  email: email,
-                  password: password,
-                  name: name,
-                  mobile: number,
-                  restaurant_id: urlSegment, // This will always be "EPOS737290"
-                  loc_id: null, // Explicitly set locationId to null
-                }),
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log("Response Data:", data);
-                  if (data.success) {
-                    const {
-                      token,
-                      customer_name,
-                      customer_number,
-                      customer_id,
-                      registrationId,
-                      locationId,
-                    } = data.data;
-
-                    // Store user info in sessionStorage
-                    sessionStorage.setItem("token", token);
-                    sessionStorage.setItem("customerName", customer_name);
-                    sessionStorage.setItem("customerNumber", customer_number);
-                    sessionStorage.setItem("customerId", customer_id);
-
-                    if (registrationId)
-                      sessionStorage.setItem("urlSegment", registrationId);
-                    if (locationId)
-                      sessionStorage.setItem("locationId", locationId);
-
-                    // Store restaurant ID in localStorage
-                    localStorage.setItem("restaurantId", restaurant_id);
-
-                    // Redirect on success
-                    window.location.href = "./location.html";
-                  } else {
-                    console.error("Error in Sign-Up:", data.error);
-                    alert("Error in Sign-Up. Please try again.");
-                  }
-                })
-                .catch((error) => {
-                  console.error("Error during Sign-Up:", error);
-                  alert("Error during Sign-Up. Please try again.");
-                });
-            });
-          })
-          .catch((error) => console.error("Error fetching env.json:", error));
-      });
-    </script> -->
-    <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Fetch the environment configuration from the JSON file
         fetch("/env.json")
@@ -674,7 +407,136 @@
           })
           .catch((error) => console.error("Error fetching env.json:", error));
       });
+    </script> -->
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Fetch the environment configuration from the JSON file
+        fetch("/env.json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Failed to fetch env.json: ${response.statusText}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const restaurantData = data.RESTAURANTS[0]; // Assuming only one restaurant in the array
+    
+            // Hardcoded restaurant_id and urlSegment values
+            const restaurant_id = "EPOS737290"; // Hardcoded value
+            const urlSegment = restaurant_id; // Same as restaurant_id in this case
+    
+            // Log to confirm that restaurant_id and urlSegment are correct
+            console.log("Final restaurant_id being used:", restaurant_id);
+            console.log("Final urlSegment being used:", urlSegment);
+    
+            // Store restaurant_id and urlSegment in localStorage initially
+            localStorage.setItem("restaurantId", restaurant_id);
+            localStorage.setItem("urlSegment", urlSegment);
+    
+            const sign_up_btn = document.querySelector("#sign-up-btn");
+            const osahan_signup = document.querySelector(".osahan-signup");
+            const registerId = document.querySelector("#registerId");
+    
+            // Ensure buttons exist before adding event listeners
+            if (sign_up_btn) {
+              sign_up_btn.addEventListener("click", () => {
+                osahan_signup.classList.add("sign-up-mode");
+              });
+            }
+    
+            if (registerId) {
+              registerId.addEventListener("click", () => {
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+                const name = document.getElementById("name").value.trim();
+                const number = document.getElementById("number").value.trim();
+    
+                // Basic form validation
+                if (!email || !password || !name || !number) {
+                  alert("All fields are required. Please fill them out.");
+                  return;
+                }
+    
+                console.log("Sign-Up Data:", { email, password, name, number });
+    
+                const apiUrl = "https://app.extraaazpos.com/api/customer-register";
+    
+                fetch(apiUrl, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    name: name,
+                    mobile: number,
+                    restaurant_id: restaurant_id, // Use hardcoded restaurant_id
+                    loc_id: null, // Explicitly set locationId to null
+                  }),
+                })
+                  .then((response) => {
+                    if (!response.ok) {
+                      return response.json().then((errorData) => {
+                        throw new Error(errorData.message || "Sign-Up failed.");
+                      });
+                    }
+                    return response.json();
+                  })
+                  .then((data) => {
+                    console.log("Response Data:", data);
+                    if (data.success) {
+                      const {
+                        token,
+                        customer_name,
+                        customer_number,
+                        customer_id,
+                        registrationId,
+                        locationId,
+                      } = data.data;
+    
+                      // Store user info in sessionStorage
+                      sessionStorage.setItem("token", token);
+                      sessionStorage.setItem("customerName", customer_name);
+                      sessionStorage.setItem("customerNumber", customer_number);
+                      sessionStorage.setItem("customerId", customer_id);
+    
+                      // If `registrationId` or `locationId` are provided, store them
+                      if (registrationId) {
+                        sessionStorage.setItem("urlSegment", registrationId);
+                        localStorage.setItem("restaurantId", registrationId); // Store the `registrationId` as `restaurantId`
+                      }
+                      if (locationId) {
+                        sessionStorage.setItem("locationId", locationId);
+                      }
+    
+                      // Store restaurantId and urlSegment in localStorage
+                      localStorage.setItem("restaurantId", restaurant_id);
+                      localStorage.setItem("urlSegment", restaurant_id);
+    
+                      // Redirect on success
+                      alert("Sign-Up Successful!");
+                      window.location.href = "./location.html";
+                    } else {
+                      console.error("Error in Sign-Up:", data.message);
+                      alert(data.message || "Error in Sign-Up. Please try again.");
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error during Sign-Up:", error.message);
+                    alert(error.message || "Unexpected error during Sign-Up.");
+                  });
+              });
+            } else {
+              console.warn("Register button not found.");
+            }
+          })
+          .catch((error) => console.error("Error fetching env.json:", error.message));
+      });
     </script>
+    
   </body>
 
   <!-- Mirrored from askbootstrap.com/preview/swiggi/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 06:30:26 GMT -->

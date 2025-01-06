@@ -16,7 +16,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="vendor/slick/slick-theme.min.css"
+      href="vendor/slick/slick-theme.min.css"  
     />
 
     <link href="vendor/icons/feather.css" rel="stylesheet" type="text/css" />
@@ -26,6 +26,18 @@
     <link href="./img/css/style.css" rel="stylesheet" />
 
     <link href="vendor/sidebar/demo.css" rel="stylesheet" />
+    <style>
+      #vid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the entire viewport */
+  z-index: -1; /* Places the video behind other content */
+}
+
+    </style>
   </head>
   <body>
     <div class="login-signup-form">
@@ -320,8 +332,6 @@
                     sessionStorage.setItem("customerName", customer_name);
                     sessionStorage.setItem("customerNumber", customer_number);
                     sessionStorage.setItem("customerId", customer_id);
-                    
-
                     // Check if locationId and restaurant_id exist in the response before setting them
                     if (restaurant_id) {
                       sessionStorage.setItem("restaurantId", restaurant_id);
@@ -330,7 +340,6 @@
                         "restaurant_id is undefined in API response."
                       );
                     }
-
                     if (locationId) {
                       sessionStorage.setItem("locationId", locationId);
                     } else {

@@ -12,7 +12,6 @@ setTimeout(function () {
   $("body").removeClass("loading").addClass("loaded");
 }, 2000);
 
-
 fetch("/env.json")
   .then((response) => response.json())
   .then((data) => {
@@ -162,7 +161,7 @@ function updateCartUI() {
 function updateCartCount() {
   const cartCountElement = document.getElementById("item-count");
   const cartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
-  
+
   // Set the cart count to the number of distinct items in the cart
   cartCountElement.textContent = cartItems.length;
 }
@@ -218,8 +217,6 @@ function updateCartItemQuantity(itemId, newQuantity) {
   }
 }
 
-
-
 $('input[name="pilih"]').on("change", function () {
   // Get the value of the selected radio button
   var areaName = $('input[name="pilih"]:checked').val();
@@ -228,10 +225,8 @@ $('input[name="pilih"]').on("change", function () {
   console.log("Selected Value:", areaName);
 });
 
-
 $(document).ready(function () {
   // When the radio button changes
-  
 
   const token = sessionStorage.getItem("token");
   if (token == null) {
@@ -241,7 +236,6 @@ $(document).ready(function () {
     // Trigger change event on page load
     $('input[name="pilih"]').trigger("change");
   }
-  
 
   const locationId = sessionStorage.getItem("selectedLocationId");
   var url = "";
@@ -270,7 +264,10 @@ $(document).ready(function () {
 
       var areaName = sessionStorage.getItem("areaName", areaName);
       if (areaName != null) {
-        $('input[name="pilih"][value="' + areaName + '"]').prop("checked", true);
+        $('input[name="pilih"][value="' + areaName + '"]').prop(
+          "checked",
+          true
+        );
       }
 
       updateCartUI();
@@ -300,7 +297,7 @@ $(document).ready(function () {
         .then((response) => response.json())
         .then((data) => {
           console.log("Categories:", data.data);
-      
+
           if (Array.isArray(data.data) && data.data.length > 0) {
             var userId = data.data[0]["user_id"];
             console.log("User ID:", userId);
@@ -316,22 +313,22 @@ $(document).ready(function () {
           }
         })
         .catch((error) => console.error("Error fetching categories:", error));
-      
-        // .then((response) => response.json())
-        // .then((data) => {
-        //   console.log("Categories:", data.data);
 
-        //   var userId = data.data[0]["user_id"];
-        //   console.log(data.data[0]["user_id"]);
-        //   usingUserId(userId);
-        //   categoryId = data.data[0]["id"];
-        //   currentPage = 1;
-        //   itemsContainer.innerHTML = "";
-        //   fetchItems();
-        //   updateCategories(data.data);
-        //   updateModalCategories(data.data);
-        // })
-        // .catch((error) => console.error("Error fetching categories:", error));
+      // .then((response) => response.json())
+      // .then((data) => {
+      //   console.log("Categories:", data.data);
+
+      //   var userId = data.data[0]["user_id"];
+      //   console.log(data.data[0]["user_id"]);
+      //   usingUserId(userId);
+      //   categoryId = data.data[0]["id"];
+      //   currentPage = 1;
+      //   itemsContainer.innerHTML = "";
+      //   fetchItems();
+      //   updateCategories(data.data);
+      //   updateModalCategories(data.data);
+      // })
+      // .catch((error) => console.error("Error fetching categories:", error));
 
       fetch(
         `https://app.extraaazpos.com/api/getOrderHistory?location_id=${locationId}&restaurant_id=${restaurantId}&customer_id=${customerId}`,
@@ -372,11 +369,14 @@ $(document).ready(function () {
             modalBody.appendChild(card);
           });
         })
-        .catch((error) => console.error("Error fetching Order History:", error));
+        .catch((error) =>
+          console.error("Error fetching Order History:", error)
+        );
 
-        
       function updateCategories(categories) {
-        const categoriesContainer = document.getElementById("custom-categories-container");
+        const categoriesContainer = document.getElementById(
+          "custom-categories-container"
+        );
 
         if (!categoriesContainer) {
           console.error("categories-container element not found");
@@ -388,20 +388,24 @@ $(document).ready(function () {
         categories.forEach((category) => {
           const catItemDiv = document.createElement("div");
           catItemDiv.className = "cat-item px-1 py-3";
-  
+
           const categoryLink = document.createElement("a");
-          categoryLink.className = "bg-white rounded d-block p-2 text-center shadow";
+          categoryLink.className =
+            "bg-white rounded d-block p-2 text-center shadow";
           categoryLink.href = "#";
 
           const categoryImg = document.createElement("img");
-          categoryImg.src = category.image_url || "/askbootstrap.com/preview/swiggi/img/icons/Breakfast.png";
+          categoryImg.src =
+            category.image_url ||
+            "/askbootstrap.com/preview/swiggi/img/icons/Breakfast.png";
 
           const categoryText = document.createElement("p");
           categoryText.className = "m-0 small";
           categoryText.textContent = category.cat_name || "Unknown Category";
 
           categoryLink.addEventListener("click", () => {
-            const selectedCategories = document.querySelectorAll(".selected-category");
+            const selectedCategories =
+              document.querySelectorAll(".selected-category");
             if (categoryLink.classList.contains("selected-category")) {
               categoryLink.classList.remove("selected-category");
             } else {
@@ -423,7 +427,7 @@ $(document).ready(function () {
           categoriesContainer.appendChild(catItemDiv);
         });
 
-        $(".cat-slider").slick('unslick');
+        $(".cat-slider").slick("unslick");
         $(".cat-slider").slick({
           infinite: true,
           slidesToShow: 3,
@@ -454,7 +458,8 @@ $(document).ready(function () {
           catItemDiv.className = "cat-item px-1 py-3";
 
           const categoryLink = document.createElement("a");
-          categoryLink.className = "bg-white rounded d-block p-2 text-center shadow";
+          categoryLink.className =
+            "bg-white rounded d-block p-2 text-center shadow";
           categoryLink.href = "#";
           categoryLink.innerHTML = category.cat_name || "Unknown Category";
 
@@ -477,8 +482,6 @@ $(document).ready(function () {
         console.log("UserId set toiiiiiii:", userId);
       }
 
-     
-      
       function fetchItems() {
         if (categoryId === null) return;
         console.log(locationId);
@@ -505,85 +508,80 @@ $(document).ready(function () {
           .catch((error) => console.error("Error fetching items:", error));
       }
 
-  function displayItems(displayItems) {
-    displayItems.forEach((item) => {
-      const foodTypeLogo = item.item_food_type === "1"
-        ? "image/veg-icon.png"
-        : "image/non-veg-icon.png";
-      let displayPrice = item.item_default_sell_price;
-      if (!displayPrice) {
-        displayPrice = item.areaPrice1; // Fallback price
-      }
-  
-      const itemHtml = `
-      <div class="shop-list-wrap shadow-lg bg-white mb-3">
-        <div class="row list-product mt-2 align-items-center ">
-          <!-- Product Info Section (Name and Price) -->
-          <div class="col-4 col-md-3 col-lg-2 ml-3">
-            <div class="left-img">
-              <div class="img-block d-flex align-items-center p-2">
-                <img src="https://w7.pngwing.com/pngs/366/356/png-transparent-hamburger-whopper-chicken-sandwich-fried-chicken-fast-food-fried-chicken-food-recipe-fast-food-restaurant.png" 
-                     alt="img" 
-                     class="custom-img img-fluid rounded-circle"
-                     style="max-width: 100%;  height: auto;"/>
-              </div>
-              <div class="col-6 col-md-6 col-lg-7">
-            <div class="product-decs">
-              <h2 style="font-size: 1rem; font-weight: bold; color: #333;">
-                <a href="#" class="product-link" style="text-decoration: none; color: inherit;">${item.item_name}</a>
-              </h2>
-              <div class="pricing-meta" style="display: flex; align-items: center; font-size: 0.9rem; color: #e74c3c;">
-                ₹<span class="price iprice" style="margin-left: 5px;">${displayPrice}</span>
-                <span class="visually-hidden" id="item-id" style="display: none;">${item.id}</span>
-              </div>
-            </div>
-          </div>
-            </div>
-          </div>
+      function displayItems(displayItems) {
+        displayItems.forEach((item) => {
+          const foodTypeLogo =
+            item.item_food_type === "1"
+              ? "image/veg-icon.png"
+              : "image/non-veg-icon.png";
+          let displayPrice = item.item_default_sell_price;
+          if (!displayPrice) {
+            displayPrice = item.areaPrice1; // Fallback price
+          }
+
+          const itemHtml = `
           
-          <!-- "Add" Button Section -->
-          <div class=" col-2 text-right mr-1">
-            <div class="product-desc-wrap">
-              <div class="add-to-link">
-                <a class="add-button cart-11 add-to-cart-btn btn-outline-gray" href="#" onclick="addItem()"
-                   data-variant-status="${item.variantStatus}"
-                   data-addon-status="${item.addOnStatus}"
-                   style="border-radius: 6px; padding: 0.5rem 0.75rem; text-decoration: none;">
-                   ADD
-                </a>
-              </div>
-            </div>
-          </div>
+      <div class="container shop-list-wrap rounded-lg shadow-lg bg-white mt-3 mb-3 p-3">
+      <div class="align-items-center">
+  <div class="row list-product mt-2 d-flex align-item-center">
+    <!-- Product Info Section (Name and Price) -->
+    <div class="col-12 col-md-8 d-flex align-items-center mb-3 mb-md-0 justify-content-center justify-content-md-start text-center text-md-start">
+      <img src="https://w7.pngwing.com/pngs/366/356/png-transparent-hamburger-whopper-chicken-sandwich-fried-chicken-fast-food-fried-chicken-food-recipe-fast-food-restaurant.png" 
+           alt="img" 
+           class="custom-img img-fluid rounded-circle me-3"
+           style="max-width: 80px; height: 80px;" />
+      <div>
+        <h2 class="fs-5 text-truncate">
+          <a href="#" class="product-link text-wrap">${item.item_name}</a>
+        </h2>
+        <div class="pricing-meta">
+          ₹<span class="price iprice text-danger">${displayPrice}</span>
+          <span class="visually-hidden" id="item-id">${item.id}</span>
         </div>
       </div>
+    </div>
+
+    <!-- "Add" Button Section -->
+    <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end align-items-center">
+      <a class="add-button cart-11 add-to-cart-btn btn btn-outline-secondary px-5 py-2" 
+         href="#" 
+         onclick="addItem()"
+         data-variant-status="${item.variantStatus}"
+         data-addon-status="${item.addOnStatus}">
+        ADD
+      </a>
+    </div>
+  </div>
+</div>
+</div>
 
        <!-- Cart Modal -->
-      <div class="modal" id="cartModal1" tabindex="-1" role="dialog">
-              flex-direction: column;">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title">Cart</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <p>Your cart items...</p>
-                      <div id="modifierData"></div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" id="addToCartButton" class="btn btn-primary">Add to Cart</button>
-                  </div>
-              </div>
-          </div>
+     <div class="modal fade" id="cartModal1" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content custom-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cartModalLabel">Cart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <p>Your cart items...</p>
+        <div id="modifierData"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="addToCartButton" class="btn btn-primary">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
       `;
-  
-      itemsContainer.innerHTML += itemHtml;
-    });
-  }
-  
+
+          itemsContainer.innerHTML += itemHtml;
+        });
+      }
 
       // using modifier
       $(document).on("click", ".cart-11", function () {
@@ -763,7 +761,3 @@ $(document).ready(function () {
       }
     });
 });
-
-
-
-

@@ -26,7 +26,8 @@
 <!-- <link rel="stylesheet" type="text/css" href="slick/slick.css"/> -->
 <!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
 
-<style>
+
+<!-- <style>
 
 .custom-img{
   width: 60px;
@@ -75,16 +76,6 @@
         
     }
   
-   
-
-    /* General Styles */
-/* .shop-list-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-} */
-
 .list-product {
   display: flex;
   justify-content: space-between;
@@ -153,27 +144,50 @@
   }
 
  
+</style> -->
+
+<style>
+/* Button with white background */
+.custom-btn-hover {
+  background-color: white;
+  border: 1px solid #dc3545; /* Border color matching the btn-danger class */
+  color: #1b1717; /* Text color matching the btn-danger class */
+}
+
+/* Hover effect */
+.custom-btn-hover:hover {
+  background-color: #e2d9da; /* Dark red background on hover */
+  color: rgb(44, 41, 41); /* White text on hover */
+  border-color: #dc3545; /* Keep the border color the same as the background on hover */
+}
+
+/* Focus effect */
+.custom-btn-hover:focus {
+  background-color: #e1d3d4; 
+  color: rgb(6, 6, 6);
+  border-color: #dc3545;
+}
+
 </style>
 
-
 </head>
-<body class="container-fluid fixed-bottom-bar">
-<div class="row osahan-home-page">
+<body>
 
-<div class="col-lg-12 col-md-12 col-sm-12 p-0">
+<div class="container-fluid w-100 p-0">
+  
+<div>
 <div id="viewCartMainDiv"></div>
 <div class="bg-primary p-3">
   <div class="text-white">
   <div class="title d-flex align-items-center">
-  
-  <span></span>
+
   </a>
   </div>
   </div>
   
   <!-- toggle navbar -->
   <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
+      <div class="container mt-5">
           <!-- Navbar Brand or Logo -->
           <img class="navbar-brand" src="./img/extraaz2logo.webp" style="width: 200px;"></img>
   
@@ -208,17 +222,17 @@
               <div class="aaa d-flex">
                   <div>
                       <a href="location.html"  class="mt-1 text text-danger" style="text-decoration: none;">
-                          <button type="button" id="outlet" class="btn btn-danger btn-rounded p-2 px-3 mx-2 d-lg-block"
+                          <button type="button" id="outlet" class="btn btn-danger btn-rounded p-2 px-3 mx-2 d-lg-block custom-btn-hover"
                               data-bs-toggle="modal" data-bs-target="#exampleModal">
                              <span>Change Outlet</span>
                           </button>
                       </a>
                   </div>
-                  <button type="button" id="order" class="btn btn-danger btn-rounded p-2 px-3 mx-2 d-lg-block"
+                  <button type="button" id="order" class="btn btn-danger btn-rounded p-2 px-3 mx-2 d-lg-block custom-btn-hover"
                       data-bs-toggle="modal" data-bs-target="#exampleModal">
                       My Orders
                   </button>
-                  <button type="button" id="logout" class="btn btn-outline-danger btn-rounded p-2 px-3 mx-2 d-lg-block"
+                  <button type="button" id="logout" class="btn btn-outline-danger btn-rounded p-2 px-3 mx-2 d-lg-block custom-btn-hover"
                       data-bs-toggle="modal" data-bs-target="#confirmationModal">
                       Logout
                   </button>
@@ -239,22 +253,22 @@
   <!-- here all searched items appear -->
   <div id="itemsContainer"></div>
   
-  <div class="bg-light">
+  <div class="bg-light col-lg-12">
   
   <!-- categories -->
-  <div class="cat-slider border-bottom" id="custom-categories-container">
-  </div>
+  <div class="cat-slider border-bottom" id="custom-categories-container"></div>
   
   <!-- filtered categories -->
-  <div class="cat-item" id="all-categories-container">
-  </div>
+  <!-- <div class="cat-item" id="all-categories-container">
+  </div> -->
     
   <!-- filtered items -->
-  <div class="shop-list-wrap product-link" id="all-items-container">
-    </div>
+  <!-- <div class="shop-list-wrap product-link" id="all-items-container">
+    
+    </div> -->
   
   <!-- items details container -->
-  <div id="item-details-container" style="text-wrap: nowrap;"></div>
+  <div id="item-details-container" class="container-fluid px-0"></div>
   
   <!-- modal container -->
   <div class="modal fade" id="catmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -280,7 +294,7 @@
     </div>
   </div>
   
-  <div id="items-container"></div>
+  <!-- <div id="items-container"></div> -->
   <div id="cart-items-container" style="display: none;"></div>
   
   
@@ -304,11 +318,10 @@
   </div>
   
   <div id="modifierData"></div>
-  
-  
   </div>
-  
-  <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center">
+
+
+  <div class="osahan-menu-fotter fixed-bottom bg-white px-3 text-center min-wh-100">
   <div class="row">
   <div class="col selected">
   <a href="home.html" class="text-danger small font-weight-bold text-decoration-none">
@@ -345,11 +358,8 @@
   </div>
   </div>
   </div>
+
 </div>
-
-
-
-
 
 <nav id="main-nav">
   <ul class="second-nav">
@@ -457,8 +467,10 @@
   </a>
   </li>
   </ul>
-  </nav>
+</nav>
+
 </div>
+
 
 
 
@@ -545,6 +557,7 @@
 </div>
 </div>
 </div>
+
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -581,7 +594,6 @@
   </div>
 
 </div>
-
 
 <script src="vendor/jquery/jquery.min.js" type="fd4b0ea0fad37b27ee43ba5d-text/javascript"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="fd4b0ea0fad37b27ee43ba5d-text/javascript"></script>
